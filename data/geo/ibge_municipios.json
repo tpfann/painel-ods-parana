@@ -1,0 +1,2795 @@
+[
+ {
+  "cod": "4100103",
+  "nome": "Abatiá",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4100202",
+  "nome": "Adrianópolis",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4100301",
+  "nome": "Agudos do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4100400",
+  "nome": "Almirante Tamandaré",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4100459",
+  "nome": "Altamira do Paraná",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4100509",
+  "nome": "Altônia",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4100608",
+  "nome": "Alto Paraná",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4100707",
+  "nome": "Alto Piquiri",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4100806",
+  "nome": "Alvorada do Sul",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4100905",
+  "nome": "Amaporã",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4101002",
+  "nome": "Ampére",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4101051",
+  "nome": "Anahy",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4101101",
+  "nome": "Andirá",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4101150",
+  "nome": "Ângulo",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4101200",
+  "nome": "Antonina",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4101309",
+  "nome": "Antônio Olinto",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4101408",
+  "nome": "Apucarana",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4101507",
+  "nome": "Arapongas",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4101606",
+  "nome": "Arapoti",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4101655",
+  "nome": "Arapuã",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4101705",
+  "nome": "Araruna",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4101804",
+  "nome": "Araucária",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4101853",
+  "nome": "Ariranha do Ivaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4101903",
+  "nome": "Assaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4102000",
+  "nome": "Assis Chateaubriand",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4102109",
+  "nome": "Astorga",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4102208",
+  "nome": "Atalaia",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4102307",
+  "nome": "Balsa Nova",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4102406",
+  "nome": "Bandeirantes",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4102505",
+  "nome": "Barbosa Ferraz",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4102604",
+  "nome": "Barracão",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4102703",
+  "nome": "Barra do Jacaré",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4102752",
+  "nome": "Bela Vista da Caroba",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4102802",
+  "nome": "Bela Vista do Paraíso",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4102901",
+  "nome": "Bituruna",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4103008",
+  "nome": "Boa Esperança",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4103024",
+  "nome": "Boa Esperança do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4103040",
+  "nome": "Boa Ventura de São Roque",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4103057",
+  "nome": "Boa Vista da Aparecida",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4103107",
+  "nome": "Bocaiúva do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4103156",
+  "nome": "Bom Jesus do Sul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4103206",
+  "nome": "Bom Sucesso",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4103222",
+  "nome": "Bom Sucesso do Sul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4103305",
+  "nome": "Borrazópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4103354",
+  "nome": "Braganey",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4103370",
+  "nome": "Brasilândia do Sul",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4103404",
+  "nome": "Cafeara",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4103453",
+  "nome": "Cafelândia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4103479",
+  "nome": "Cafezal do Sul",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4103503",
+  "nome": "Califórnia",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4103602",
+  "nome": "Cambará",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4103701",
+  "nome": "Cambé",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4103800",
+  "nome": "Cambira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4103909",
+  "nome": "Campina da Lagoa",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4103958",
+  "nome": "Campina do Simão",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4104006",
+  "nome": "Campina Grande do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4104055",
+  "nome": "Campo Bonito",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4104105",
+  "nome": "Campo do Tenente",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4104204",
+  "nome": "Campo Largo",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4104253",
+  "nome": "Campo Magro",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4104303",
+  "nome": "Campo Mourão",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4104402",
+  "nome": "Cândido de Abreu",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4104428",
+  "nome": "Candói",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4104451",
+  "nome": "Cantagalo",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4104501",
+  "nome": "Capanema",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4104600",
+  "nome": "Capitão Leônidas Marques",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4104659",
+  "nome": "Carambeí",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4104709",
+  "nome": "Carlópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4104808",
+  "nome": "Cascavel",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4104907",
+  "nome": "Castro",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4105003",
+  "nome": "Catanduvas",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4105102",
+  "nome": "Centenário do Sul",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4105201",
+  "nome": "Cerro Azul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4105300",
+  "nome": "Céu Azul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4105409",
+  "nome": "Chopinzinho",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4105508",
+  "nome": "Cianorte",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4105607",
+  "nome": "Cidade Gaúcha",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4105706",
+  "nome": "Clevelândia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4105805",
+  "nome": "Colombo",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4105904",
+  "nome": "Colorado",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4106001",
+  "nome": "Congonhinhas",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4106100",
+  "nome": "Conselheiro Mairinck",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4106209",
+  "nome": "Contenda",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4106308",
+  "nome": "Corbélia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4106407",
+  "nome": "Cornélio Procópio",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4106456",
+  "nome": "Coronel Domingos Soares",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4106506",
+  "nome": "Coronel Vivida",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4106555",
+  "nome": "Corumbataí do Sul",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4106571",
+  "nome": "Cruzeiro do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4106605",
+  "nome": "Cruzeiro do Oeste",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4106704",
+  "nome": "Cruzeiro do Sul",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4106803",
+  "nome": "Cruz Machado",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4106852",
+  "nome": "Cruzmaltina",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4106902",
+  "nome": "Curitiba",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4107009",
+  "nome": "Curiúva",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4107108",
+  "nome": "Diamante do Norte",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4107124",
+  "nome": "Diamante do Sul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4107157",
+  "nome": "Diamante D'Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4107207",
+  "nome": "Dois Vizinhos",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4107256",
+  "nome": "Douradina",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4107306",
+  "nome": "Doutor Camargo",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4107405",
+  "nome": "Enéas Marques",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4107504",
+  "nome": "Engenheiro Beltrão",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4107520",
+  "nome": "Esperança Nova",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4107538",
+  "nome": "Entre Rios do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4107546",
+  "nome": "Espigão Alto do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4107553",
+  "nome": "Farol",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4107603",
+  "nome": "Faxinal",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4107652",
+  "nome": "Fazenda Rio Grande",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4107702",
+  "nome": "Fênix",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4107736",
+  "nome": "Fernandes Pinheiro",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4107751",
+  "nome": "Figueira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4107801",
+  "nome": "Floraí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4107850",
+  "nome": "Flor da Serra do Sul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4107900",
+  "nome": "Floresta",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4108007",
+  "nome": "Florestópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4108106",
+  "nome": "Flórida",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4108205",
+  "nome": "Formosa do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4108304",
+  "nome": "Foz do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4108320",
+  "nome": "Francisco Alves",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4108403",
+  "nome": "Francisco Beltrão",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4108452",
+  "nome": "Foz do Jordão",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4108502",
+  "nome": "General Carneiro",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4108551",
+  "nome": "Godoy Moreira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4108601",
+  "nome": "Goioerê",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4108650",
+  "nome": "Goioxim",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4108700",
+  "nome": "Grandes Rios",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4108809",
+  "nome": "Guaíra",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4108908",
+  "nome": "Guairaçá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4108957",
+  "nome": "Guamiranga",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4109005",
+  "nome": "Guapirama",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4109104",
+  "nome": "Guaporema",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4109203",
+  "nome": "Guaraci",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4109302",
+  "nome": "Guaraniaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4109401",
+  "nome": "Guarapuava",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4109500",
+  "nome": "Guaraqueçaba",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4109609",
+  "nome": "Guaratuba",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4109658",
+  "nome": "Honório Serpa",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4109708",
+  "nome": "Ibaiti",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4109757",
+  "nome": "Ibema",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4109807",
+  "nome": "Ibiporã",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4109906",
+  "nome": "Icaraíma",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4110003",
+  "nome": "Iguaraçu",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4110052",
+  "nome": "Iguatu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4110078",
+  "nome": "Imbaú",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4110102",
+  "nome": "Imbituva",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4110201",
+  "nome": "Inácio Martins",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4110300",
+  "nome": "Inajá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4110409",
+  "nome": "Indianópolis",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4110508",
+  "nome": "Ipiranga",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4110607",
+  "nome": "Iporã",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4110656",
+  "nome": "Iracema do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4110706",
+  "nome": "Irati",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4110805",
+  "nome": "Iretama",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4110904",
+  "nome": "Itaguajé",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4110953",
+  "nome": "Itaipulândia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4111001",
+  "nome": "Itambaracá",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4111100",
+  "nome": "Itambé",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4111209",
+  "nome": "Itapejara d'Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4111258",
+  "nome": "Itaperuçu",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4111308",
+  "nome": "Itaúna do Sul",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4111407",
+  "nome": "Ivaí",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4111506",
+  "nome": "Ivaiporã",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4111555",
+  "nome": "Ivaté",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4111605",
+  "nome": "Ivatuba",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4111704",
+  "nome": "Jaboti",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4111803",
+  "nome": "Jacarezinho",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4111902",
+  "nome": "Jaguapitã",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4112009",
+  "nome": "Jaguariaíva",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4112108",
+  "nome": "Jandaia do Sul",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4112207",
+  "nome": "Janiópolis",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4112306",
+  "nome": "Japira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4112405",
+  "nome": "Japurá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4112504",
+  "nome": "Jardim Alegre",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4112603",
+  "nome": "Jardim Olinda",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4112702",
+  "nome": "Jataizinho",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4112751",
+  "nome": "Jesuítas",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4112801",
+  "nome": "Joaquim Távora",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4112900",
+  "nome": "Jundiaí do Sul",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4112959",
+  "nome": "Juranda",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4113007",
+  "nome": "Jussara",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4113106",
+  "nome": "Kaloré",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4113205",
+  "nome": "Lapa",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4113254",
+  "nome": "Laranjal",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4113304",
+  "nome": "Laranjeiras do Sul",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4113403",
+  "nome": "Leópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4113429",
+  "nome": "Lidianópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4113452",
+  "nome": "Lindoeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4113502",
+  "nome": "Loanda",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4113601",
+  "nome": "Lobato",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4113700",
+  "nome": "Londrina",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4113734",
+  "nome": "Luiziana",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4113759",
+  "nome": "Lunardelli",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4113809",
+  "nome": "Lupionópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4113908",
+  "nome": "Mallet",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4114005",
+  "nome": "Mamborê",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4114104",
+  "nome": "Mandaguaçu",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4114203",
+  "nome": "Mandaguari",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4114302",
+  "nome": "Mandirituba",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4114351",
+  "nome": "Manfrinópolis",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4114401",
+  "nome": "Mangueirinha",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4114500",
+  "nome": "Manoel Ribas",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4114609",
+  "nome": "Marechal Cândido Rondon",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4114708",
+  "nome": "Maria Helena",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4114807",
+  "nome": "Marialva",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4114906",
+  "nome": "Marilândia do Sul",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4115002",
+  "nome": "Marilena",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4115101",
+  "nome": "Mariluz",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4115200",
+  "nome": "Maringá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4115309",
+  "nome": "Mariópolis",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4115358",
+  "nome": "Maripá",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4115408",
+  "nome": "Marmeleiro",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4115457",
+  "nome": "Marquinho",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4115507",
+  "nome": "Marumbi",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4115606",
+  "nome": "Matelândia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4115705",
+  "nome": "Matinhos",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4115739",
+  "nome": "Mato Rico",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4115754",
+  "nome": "Mauá da Serra",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4115804",
+  "nome": "Medianeira",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4115853",
+  "nome": "Mercedes",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4115903",
+  "nome": "Mirador",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4116000",
+  "nome": "Miraselva",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4116059",
+  "nome": "Missal",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4116109",
+  "nome": "Moreira Sales",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4116208",
+  "nome": "Morretes",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4116307",
+  "nome": "Munhoz de Melo",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4116406",
+  "nome": "Nossa Senhora das Graças",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4116505",
+  "nome": "Nova Aliança do Ivaí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4116604",
+  "nome": "Nova América da Colina",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4116703",
+  "nome": "Nova Aurora",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4116802",
+  "nome": "Nova Cantu",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4116901",
+  "nome": "Nova Esperança",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4116950",
+  "nome": "Nova Esperança do Sudoeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4117008",
+  "nome": "Nova Fátima",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4117057",
+  "nome": "Nova Laranjeiras",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4117107",
+  "nome": "Nova Londrina",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4117206",
+  "nome": "Nova Olímpia",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4117214",
+  "nome": "Nova Santa Bárbara",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4117222",
+  "nome": "Nova Santa Rosa",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4117255",
+  "nome": "Nova Prata do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4117271",
+  "nome": "Nova Tebas",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4117297",
+  "nome": "Novo Itacolomi",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4117305",
+  "nome": "Ortigueira",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4117404",
+  "nome": "Ourizona",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4117453",
+  "nome": "Ouro Verde do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4117503",
+  "nome": "Paiçandu",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4117602",
+  "nome": "Palmas",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4117701",
+  "nome": "Palmeira",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4117800",
+  "nome": "Palmital",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4117909",
+  "nome": "Palotina",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4118006",
+  "nome": "Paraíso do Norte",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4118105",
+  "nome": "Paranacity",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4118204",
+  "nome": "Paranaguá",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4118303",
+  "nome": "Paranapoema",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4118402",
+  "nome": "Paranavaí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4118451",
+  "nome": "Pato Bragado",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4118501",
+  "nome": "Pato Branco",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4118600",
+  "nome": "Paula Freitas",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4118709",
+  "nome": "Paulo Frontin",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4118808",
+  "nome": "Peabiru",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4118857",
+  "nome": "Perobal",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4118907",
+  "nome": "Pérola",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4119004",
+  "nome": "Pérola d'Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4119103",
+  "nome": "Piên",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4119152",
+  "nome": "Pinhais",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4119202",
+  "nome": "Pinhalão",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ibaiti"
+ },
+ {
+  "cod": "4119251",
+  "nome": "Pinhal de São Bento",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4119301",
+  "nome": "Pinhão",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4119400",
+  "nome": "Piraí do Sul",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4119509",
+  "nome": "Piraquara",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4119608",
+  "nome": "Pitanga",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4119657",
+  "nome": "Pitangueiras",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4119707",
+  "nome": "Planaltina do Paraná",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4119806",
+  "nome": "Planalto",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4119905",
+  "nome": "Ponta Grossa",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4119954",
+  "nome": "Pontal do Paraná",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Paranaguá"
+ },
+ {
+  "cod": "4120002",
+  "nome": "Porecatu",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4120101",
+  "nome": "Porto Amazonas",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4120150",
+  "nome": "Porto Barreiro",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4120200",
+  "nome": "Porto Rico",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4120309",
+  "nome": "Porto Vitória",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4120333",
+  "nome": "Prado Ferreira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4120358",
+  "nome": "Pranchita",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4120408",
+  "nome": "Presidente Castelo Branco",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4120507",
+  "nome": "Primeiro de Maio",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4120606",
+  "nome": "Prudentópolis",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4120655",
+  "nome": "Quarto Centenário",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4120705",
+  "nome": "Quatiguá",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4120804",
+  "nome": "Quatro Barras",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4120853",
+  "nome": "Quatro Pontes",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Marechal Cândido Rondon"
+ },
+ {
+  "cod": "4120903",
+  "nome": "Quedas do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4121000",
+  "nome": "Querência do Norte",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4121109",
+  "nome": "Quinta do Sol",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4121208",
+  "nome": "Quitandinha",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4121257",
+  "nome": "Ramilândia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4121307",
+  "nome": "Rancho Alegre",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4121356",
+  "nome": "Rancho Alegre D'Oeste",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4121406",
+  "nome": "Realeza",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4121505",
+  "nome": "Rebouças",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4121604",
+  "nome": "Renascença",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4121703",
+  "nome": "Reserva",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4121752",
+  "nome": "Reserva do Iguaçu",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4121802",
+  "nome": "Ribeirão Claro",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4121901",
+  "nome": "Ribeirão do Pinhal",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4122008",
+  "nome": "Rio Azul",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4122107",
+  "nome": "Rio Bom",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4122156",
+  "nome": "Rio Bonito do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4122172",
+  "nome": "Rio Branco do Ivaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4122206",
+  "nome": "Rio Branco do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4122305",
+  "nome": "Rio Negro",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4122404",
+  "nome": "Rolândia",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4122503",
+  "nome": "Roncador",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4122602",
+  "nome": "Rondon",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4122651",
+  "nome": "Rosário do Ivaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4122701",
+  "nome": "Sabáudia",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4122800",
+  "nome": "Salgado Filho",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4122909",
+  "nome": "Salto do Itararé",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4123006",
+  "nome": "Salto do Lontra",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4123105",
+  "nome": "Santa Amélia",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4123204",
+  "nome": "Santa Cecília do Pavão",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4123303",
+  "nome": "Santa Cruz de Monte Castelo",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4123402",
+  "nome": "Santa Fé",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4123501",
+  "nome": "Santa Helena",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4123600",
+  "nome": "Santa Inês",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4123709",
+  "nome": "Santa Isabel do Ivaí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4123808",
+  "nome": "Santa Izabel do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4123824",
+  "nome": "Santa Lúcia",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4123857",
+  "nome": "Santa Maria do Oeste",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Pitanga"
+ },
+ {
+  "cod": "4123907",
+  "nome": "Santa Mariana",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4123956",
+  "nome": "Santa Mônica",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4124004",
+  "nome": "Santana do Itararé",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4124020",
+  "nome": "Santa Tereza do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4124053",
+  "nome": "Santa Terezinha de Itaipu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4124103",
+  "nome": "Santo Antônio da Platina",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4124202",
+  "nome": "Santo Antônio do Caiuá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4124301",
+  "nome": "Santo Antônio do Paraíso",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4124400",
+  "nome": "Santo Antônio do Sudoeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4124509",
+  "nome": "Santo Inácio",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranacity - Colorado"
+ },
+ {
+  "cod": "4124608",
+  "nome": "São Carlos do Ivaí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4124707",
+  "nome": "São Jerônimo da Serra",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4124806",
+  "nome": "São João",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4124905",
+  "nome": "São João do Caiuá",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4125001",
+  "nome": "São João do Ivaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Ivaiporã"
+ },
+ {
+  "cod": "4125100",
+  "nome": "São João do Triunfo",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4125209",
+  "nome": "São Jorge d'Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Dois Vizinhos"
+ },
+ {
+  "cod": "4125308",
+  "nome": "São Jorge do Ivaí",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4125357",
+  "nome": "São Jorge do Patrocínio",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4125407",
+  "nome": "São José da Boa Vista",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4125456",
+  "nome": "São José das Palmeiras",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4125506",
+  "nome": "São José dos Pinhais",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4125555",
+  "nome": "São Manoel do Paraná",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4125605",
+  "nome": "São Mateus do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4125704",
+  "nome": "São Miguel do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4125753",
+  "nome": "São Pedro do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4125803",
+  "nome": "São Pedro do Ivaí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Apucarana"
+ },
+ {
+  "cod": "4125902",
+  "nome": "São Pedro do Paraná",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Loanda"
+ },
+ {
+  "cod": "4126009",
+  "nome": "São Sebastião da Amoreira",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4126108",
+  "nome": "São Tomé",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4126207",
+  "nome": "Sapopema",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4126256",
+  "nome": "Sarandi",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4126272",
+  "nome": "Saudade do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4126306",
+  "nome": "Sengés",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Ponta Grossa"
+ },
+ {
+  "cod": "4126355",
+  "nome": "Serranópolis do Iguaçu",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Foz do Iguaçu"
+ },
+ {
+  "cod": "4126405",
+  "nome": "Sertaneja",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4126504",
+  "nome": "Sertanópolis",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4126603",
+  "nome": "Siqueira Campos",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4126652",
+  "nome": "Sulina",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4126678",
+  "nome": "Tamarana",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Londrina"
+ },
+ {
+  "cod": "4126702",
+  "nome": "Tamboara",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4126801",
+  "nome": "Tapejara",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4126900",
+  "nome": "Tapira",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4127007",
+  "nome": "Teixeira Soares",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Irati"
+ },
+ {
+  "cod": "4127106",
+  "nome": "Telêmaco Borba",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4127205",
+  "nome": "Terra Boa",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4127304",
+  "nome": "Terra Rica",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Paranavaí"
+ },
+ {
+  "cod": "4127403",
+  "nome": "Terra Roxa",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4127502",
+  "nome": "Tibagi",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4127601",
+  "nome": "Tijucas do Sul",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4127700",
+  "nome": "Toledo",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4127809",
+  "nome": "Tomazina",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4127858",
+  "nome": "Três Barras do Paraná",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4127882",
+  "nome": "Tunas do Paraná",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4127908",
+  "nome": "Tuneiras do Oeste",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Cianorte"
+ },
+ {
+  "cod": "4127957",
+  "nome": "Tupãssi",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Toledo"
+ },
+ {
+  "cod": "4127965",
+  "nome": "Turvo",
+  "rgint": "Guarapuava",
+  "rgint_id": "4102",
+  "rgint_imediata": "Guarapuava"
+ },
+ {
+  "cod": "4128005",
+  "nome": "Ubiratã",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Campo Mourão"
+ },
+ {
+  "cod": "4128104",
+  "nome": "Umuarama",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4128203",
+  "nome": "União da Vitória",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "União da Vitória"
+ },
+ {
+  "cod": "4128302",
+  "nome": "Uniflor",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Maringá"
+ },
+ {
+  "cod": "4128401",
+  "nome": "Uraí",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Cornélio Procópio ¿ Bandeirantes"
+ },
+ {
+  "cod": "4128500",
+  "nome": "Wenceslau Braz",
+  "rgint": "Londrina",
+  "rgint_id": "4105",
+  "rgint_imediata": "Santo Antônio da Platina"
+ },
+ {
+  "cod": "4128534",
+  "nome": "Ventania",
+  "rgint": "Ponta Grossa",
+  "rgint_id": "4106",
+  "rgint_imediata": "Telêmaco Borba"
+ },
+ {
+  "cod": "4128559",
+  "nome": "Vera Cruz do Oeste",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Cascavel"
+ },
+ {
+  "cod": "4128609",
+  "nome": "Verê",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Francisco Beltrão"
+ },
+ {
+  "cod": "4128625",
+  "nome": "Alto Paraíso",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ },
+ {
+  "cod": "4128633",
+  "nome": "Doutor Ulysses",
+  "rgint": "Curitiba",
+  "rgint_id": "4101",
+  "rgint_imediata": "Curitiba"
+ },
+ {
+  "cod": "4128658",
+  "nome": "Virmond",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Laranjeiras do Sul - Quedas do Iguaçu"
+ },
+ {
+  "cod": "4128708",
+  "nome": "Vitorino",
+  "rgint": "Cascavel",
+  "rgint_id": "4103",
+  "rgint_imediata": "Pato Branco"
+ },
+ {
+  "cod": "4128807",
+  "nome": "Xambrê",
+  "rgint": "Maringá",
+  "rgint_id": "4104",
+  "rgint_imediata": "Umuarama"
+ }
+]

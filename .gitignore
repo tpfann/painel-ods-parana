@@ -1,0 +1,23 @@
+# ---- dados-fonte (nao versionados: arquivos do cliente e intermediarios) ----
+Base de Dados/
+Dicionário/
+data/long.csv.gz
+data/catalog.json
+data/_audit_zeros.txt
+
+# ---- scratch ----
+_tmp_*.py
+scratch/
+*.tmp
+*.log
+
+# ---- python ----
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# ---- sistema ----
+Thumbs.db
+.DS_Store
+desktop.ini

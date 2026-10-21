@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel ODS · Paraná</title>
+<link rel="stylesheet" href="prototipo.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><i></i><i></i><i></i></div>
+    <div>
+      <h1>Painel ODS</h1>
+      <p>Paraná · indicadores municipais</p>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs">
+    <button data-view="geral" class="active">Visão geral</button>
+    <button data-view="explorador">Explorador</button>
+    <button data-view="comparador">Comparador</button>
+    <button data-view="revisao">Revisão</button>
+  </nav>
+
+  <div class="top-actions">
+    <div class="picker">
+      <button class="picker-btn" id="btn-local">Guarapuava</button>
+      <div class="picker-pop" id="pop-local">
+        <input type="search" id="busca-local" placeholder="Buscar município…" autocomplete="off">
+        <div class="picker-list" id="lista-local"></div>
+      </div>
+    </div>
+    <select class="select" id="sel-ano" aria-label="Ano de referência"></select>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ VISÃO GERAL ============================ -->
+  <section class="view active" id="view-geral">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Município em foco</p>
+        <h2 id="hero-nome">Guarapuava</h2>
+        <p class="hero-sub" id="hero-sub"></p>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+
+    <div class="ods-grid" id="ods-grid"></div>
+    <p class="nota" style="margin:-12px 0 22px">Cada cartão usa o <b>último dado disponível</b> do indicador; o selo âmbar marca dado anterior a 2025. Indicadores de contagem (ex.: esgoto, energia) aparecem em volume absoluto, sem juízo de bom/ruim.</p>
+
+    <div class="duo">
+      <div class="card">
+        <div class="card-head">
+          <h3>Mapa do Paraná</h3>
+          <div class="map-ctrls">
+            <div class="map-ctl">
+              <label for="mapa-ods">ODS</label>
+              <select class="select" id="mapa-ods" aria-label="Filtrar indicadores do mapa por ODS"></select>
+            </div>
+            <div class="map-ctl">
+              <label for="mapa-ind">Indicador</label>
+              <select class="select" id="mapa-ind" aria-label="Indicador exibido no mapa"></select>
+            </div>
+          </div>
+        </div>
+        <div id="mapa"><div class="empty">…</div></div>
+        <div class="legend">
+          <span id="mapa-leg-a">pior</span><span class="ramp"></span><span id="mapa-leg-b">melhor</span>
+          <span class="nd"><i></i>sem dado</span>
+        </div>
+        <p id="mapa-leg-txt" style="font-size:11px;color:var(--muted);margin-top:8px"></p>
+        <p class="nota">Municípios em cinza não têm dado para o indicador no ano exibido — isso é diferente de valor zero.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Posição relativa</h3>
+          <span style="font-size:11px;color:var(--muted)">percentil entre 399 municípios</span>
+        </div>
+        <div id="destaques"></div>
+        <p class="nota">Usa o <b>último dado disponível</b> de cada indicador. Valor <b>0</b> é dado real; <b>—</b> indica dado inexistente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ EXPLORADOR ============================ -->
+  <section class="view" id="view-explorador">
+    <div class="explorer">
+      <aside class="sidebar">
+        <input type="search" id="busca-ind" placeholder="Buscar indicador…" autocomplete="off">
+        <div class="ods-filter">
+          <select class="select" id="sel-ods-exp" aria-label="Filtrar indicadores por ODS"></select>
+        </div>
+        <div class="ind-list" id="lista-ind"></div>
+      </aside>
+      <div class="detail" id="detalhe"></div>
+    </div>
+  </section>
+
+  <!-- ============================ COMPARADOR ============================ -->
+  <section class="view" id="view-comparador">
+    <div class="card">
+      <div class="cmp-controls">
+        <select class="select" id="cmp-ods" style="min-width:250px;max-width:320px" aria-label="Filtrar indicadores por ODS"></select>
+        <select class="select" id="cmp-ind" style="min-width:320px;max-width:560px" aria-label="Indicador comparado"></select>
+        <select class="select" id="cmp-ano" style="min-width:92px" aria-label="Ano comparado"></select>
+        <span id="cmp-modo"></span>
+        <div class="cmp-chips" id="cmp-chips"></div>
+      </div>
+      <div id="cmp-resumo" class="kpis" style="margin-bottom:6px"></div>
+      <p class="sub" id="cmp-selo" style="font-size:11.5px;color:var(--muted)"></p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="card-head"><h3>Séries comparadas</h3><div class="legend-inline" id="cmp-lg"></div></div>
+      <div id="cmp-chart"></div>
+    </div>
+
+    <div class="card" style="margin-top:12px;overflow:auto">
+      <div class="card-head"><h3>Últimos 12 anos</h3></div>
+      <div id="cmp-tabela"></div>
+    </div>
+  </section>
+
+  <!-- ============================ REVISÃO ============================ -->
+  <section class="view" id="view-revisao">
+    <div class="card">
+      <div class="card-head">
+        <h3>Revisão de polaridade</h3>
+        <span id="rev-prog" style="font-size:11.5px;color:var(--muted)"></span>
+      </div>
+      <p class="nota">
+        “Maior é melhor” / “menor é melhor” define a cor (verde/vermelho), a ordem no ranking e o que entra em
+        <b>melhores posições</b> e <b>pontos de atenção</b>. As escolhas ficam salvas neste navegador e podem ser
+        exportadas em JSON para virar padrão no gerador de dados.
+      </p>
+      <div class="rev-ctrls">
+        <select class="select" id="rev-ods" aria-label="Filtrar por ODS"></select>
+        <select class="select" id="rev-tipo" aria-label="Filtrar por tipo">
+          <option value="">Todos os tipos</option>
+          <option value="percentual">Percentual</option>
+          <option value="taxa">Taxa</option>
+          <option value="contagem">Contagem</option>
+          <option value="moeda">Moeda</option>
+        </select>
+        <label class="rev-check"><input type="checkbox" id="rev-pend"> somente não revisados</label>
+        <span style="flex:1"></span>
+        <button class="btn-add" id="rev-export">Copiar JSON das alterações</button>
+        <button class="btn-add" id="rev-clear">Limpar revisão</button>
+      </div>
+      <div id="rev-lista"></div>
+    </div>
+  </section>
+
+</main>
+
+<div class="proto-flag">protótipo</div>
+
+<script src="data/bi/indice.js"></script>
+<script src="data/bi/val_ods1.js"></script>
+<script src="data/bi/val_ods2.js"></script>
+<script src="data/bi/val_ods3.js"></script>
+<script src="data/bi/val_ods4.js"></script>
+<script src="data/bi/val_ods5.js"></script>
+<script src="data/bi/val_ods6.js"></script>
+<script src="data/bi/val_ods7.js"></script>
+<script src="data/bi/val_ods8.js"></script>
+<script src="data/bi/val_ods9.js"></script>
+<script src="data/bi/val_ods13.js"></script>
+<script src="data/bi/val_ods15.js"></script>
+<script src="data/bi/val_ods16.js"></script>
+<script src="data/bi/mapa.js"></script>
+<script src="data/bi/populacao.js"></script>
+<script src="prototipo.js"></script>
+</body>
+</html>
