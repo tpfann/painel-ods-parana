@@ -2,25 +2,34 @@
 Gera o payload do BI (JS classico, para rodar via file:// sem servidor).
 
 Saidas em data/bi/:
-  indice.js        -> BI.localidades, BI.indicadores (metadados), BI.ods
+  indice.js        -> BI.indice (localidades, indicadores, ods) + BI.build
   val_odsN.js      -> BI.valores[id] = [valores...]  (matriz localidade x ano, achatada)
-  mapa.js          -> BI.mapa = [{c, d}]  (path SVG por codigo IBGE)
+  mapa.js          -> BI.mapa = {w, h, p:[{c, d, x, y}]}  (path SVG por codigo IBGE)
+  (populacao.js e gerado por 04_build_populacao.py)
 
 Ordem do array achatado: idx = localidade_idx * n_anos + ano_idx
 Valores ausentes = null.
+
+Identidade do payload: BI.build.id = hash do catalogo + geografia + populacao.
+Se algum arquivo for gerado fora de sequencia, os ids nao batem e o app recusa
+a renderizar (ver prototipo.js, checagem de integridade).
 
 Uso: python scripts/03_build_bi.py
 """
 
 from __future__ import annotations
 
+import hashlib
 import json
+import math
 import os
 import re
 import unicodedata
 from collections import OrderedDict
 
 import pandas as pd
+
+from _comum import chave_negocio, id_curto, localidades, norm
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "bi")
@@ -45,6 +54,33 @@ RECORTES = {
     "Total", "Masculino", "Feminino", "Urbano", "Urbana", "Rural",
     "Cor/Raça Branca", "Cor/Raça Preta", "Cor/Raça Amarela",
     "Cor/Raça Parda", "Cor/Raça Indígena",
+}
+
+# Indicador principal de cada ODS — nome EXATO da coluna de origem (chave de negócio).
+# Substitui a busca por substring que vivia no JavaScript (fragil e duplicada).
+PRINCIPAL_POR_ODS = {
+    1: "Proporção do Total das Despesas Públicas Municipais com Educação e Seguridade Social (%)",
+    2: "Proporção de Nascidos Vivos com Baixo Peso ao Nascer - Total (%)",
+    3: "Taxa de Mortalidade Infantil em Menores de 1 ano de Idade - Total (mil nascidos vivos)",
+    4: "Proporção de Estudantes no Final dos Anos Iniciais do Ensino Fundamental que Atingiram um Nível Mínimo de Proficiência em Língua Portuguesa - Total (%)",
+    5: "Proporção de Cadeiras Ocupadas por Mulheres nas Câmaras de Vereadores - Total (%)",
+    6: "Atendimento de Esgoto - Unidades Atendidas Residenciais",
+    7: "Energia Elétrica Residencial - Consumidores",
+    8: "Produto Interno Bruto (PIB) per Capita (R$ 1,00)",
+    9: "Percentual do Valor Adicionado Bruto na Indústria sobre o PIB (%)",
+    13: "Número de Mortes, Pessoas Desaparecidas e Pessoas Diretamente Afetadas Atribuído a Desastres (100 mil habitantes)",
+    15: "Área de Remanescente Florestal como Proporção da Área Territorial (%)",
+    16: "Taxa de Mortalidade por Homicídios (100 mil habitantes)",
+}
+
+# Contagens que podem ser vistas como taxa por 100 mil habitantes: o numerador tem de
+# contar pessoas ou eventos. "Unidades atendidas", "consumidores" etc. sao de outra
+# natureza e ficam no absoluto (decisao do cliente em 21/10/2026).
+UNIDADES_PROPORCIONAIS = {"óbitos", "vínculos", "RAIS"}
+MOTIVO_PROPORCIONAL = {
+    "óbitos": "numerador conta pessoas (óbitos)",
+    "vínculos": "numerador conta vínculos de emprego (pessoas)",
+    "RAIS": "numerador conta vínculos de emprego (pessoas)",
 }
 
 
@@ -89,29 +125,32 @@ def parse(nome: str, grupo_tema: str) -> dict:
                 unidade = rotulo
                 break
 
+    proporcional = tipo == "contagem" and unidade in UNIDADES_PROPORCIONAIS
+
     return {
         "grupo": grupo,
         "medida": medida,
-        "recorte": recorte or "Total" if recorte else None,
+        "recorte": recorte,
         "unidade": unidade,
         "tipo": tipo,
+        "proporcional": proporcional,
+        "proporcional_motivo": MOTIVO_PROPORCIONAL.get(unidade) if proporcional else None,
     }
 
 
-def polaridade(nome: str) -> int:
-    """+1 maior é melhor | -1 menor é melhor | 0 sem juízo de valor."""
+def polaridade(nome: str):
+    """(+1 maior é melhor | -1 menor é melhor | 0 sem juízo de valor, motivo)."""
     if "Casos de AIDS entre Mulheres" in nome:
-        return 0  # indicador de composição/disparidade, não de volume
+        return 0, "indicador de composição/disparidade: não tem juízo de valor"
     if "Cobertura Vacinal" in nome:
-        return 1  # mais cobertura é melhor (evita falso negativo por "Hepatite"/"Tuberculose")
+        return 1, "palavra-chave 'Cobertura Vacinal' (mais cobertura é melhor)"
     baixos = ("Mortalidade", "Óbitos", "Mortes", "Desnutrid", "Baixo Peso",
               "Homicíd", "Hepatite", "Tuberculose", "Incidência de AIDS",
               "Mães Adolescentes", "Desastres")
-    return -1 if any(k in nome for k in baixos) else 1
-
-
-def norm(s: str) -> str:
-    return unicodedata.normalize("NFKD", s).encode("ascii", "ignore").decode().lower().strip()
+    for k in baixos:
+        if k in nome:
+            return -1, "palavra-chave '%s' (menos é melhor)" % k
+    return 1, "padrão: mais é melhor"
 
 
 # rótulos curtos por tema (chave = norm(grupo)); usados em cartões, listas e mapas
@@ -129,8 +168,8 @@ GRUPOS_CURTOS = {
     "proporcao de nascidos vivos com 7 ou mais consultas pre-natal": "Pré-natal (7+ consultas)",
     "proporcao dos casos de aids entre mulheres": "Casos de AIDS entre mulheres",
     "taxa de incidencia de aids por ano de diagnostico": "Incidência de AIDS",
-    "taxa de incidencia de hepatite b": "Incidência de hepatite B",
-    "taxa de incidencia de tuberculose": "Incidência de tuberculose",
+    "taxa de incidencia de hepatite b": "Incidência de Hepatite B",
+    "taxa de incidencia de tuberculose": "Incidência de Tuberculose",
     "taxa de nascidos vivos de maes adolescentes": "Mães adolescentes",
     "taxas de mortalidade": "Mortalidade por causas específicas",
     "infraestrutura nas escolas": "Infraestrutura das escolas",
@@ -167,30 +206,47 @@ def js(obj) -> str:
     return json.dumps(obj, ensure_ascii=False, separators=(",", ":"))
 
 
+def sha(*blobs: bytes) -> str:
+    h = hashlib.sha256()
+    for b in blobs:
+        h.update(b)
+        h.update(b"\x00")
+    return h.hexdigest()[:12]
+
+
 # ---------------------------------------------------------------- dados
 long = pd.read_csv(os.path.join(ROOT, "data", "long.csv.gz"))
 catalogo = json.load(open(os.path.join(ROOT, "data", "catalog.json"), encoding="utf-8"))
 ibge = json.load(open(os.path.join(ROOT, "data", "geo", "ibge_municipios.json"), encoding="utf-8"))
 geo = json.load(open(os.path.join(ROOT, "data", "geo", "pr_municipios.geojson"), encoding="utf-8"))
+caminho_pop = os.path.join(ROOT, "data", "bi", "populacao.js")
+pop_bytes = b""
+if os.path.exists(caminho_pop):
+    with open(caminho_pop, "rb") as fh:
+        pop_bytes = fh.read()
 
-cod_por_nome = {norm(m["nome"]): m["cod"] for m in ibge}
-reg_por_nome = {norm(m["nome"]): m["rgint"] for m in ibge}
+# manifest: identidade do payload ( impede misturar geracoes diferentes )
+# REGRAS_VERSION entra no hash: se as regras de derivacao mudarem (polaridade,
+# proporcionalidade, rotulos), o build muda e o app recusa payload antigo.
+REGRAS_VERSION = "2026-10-21"
+BUILD_ID = sha(
+    REGRAS_VERSION.encode("utf-8"),
+    json.dumps(catalogo, ensure_ascii=False, sort_keys=True).encode("utf-8"),
+    json.dumps(ibge, ensure_ascii=False, sort_keys=True).encode("utf-8"),
+    pop_bytes,
+)
+BUILD = {
+    "id": BUILD_ID,
+    "gerado_em": pd.Timestamp.now().strftime("%Y-%m-%d %H:%M"),
+    "regras": REGRAS_VERSION,
+    "fonte_catalogo": "scripts/01_build_catalog.py",
+    "n_indicadores_catalogo": len(catalogo),
+}
 
-# ordem das localidades: estado -> regioes -> municipios (alfabetico)
-todos = set(long["localidade"].unique())
-muns = sorted(l for l in todos if not l.startswith("RGInt") and l != "Estado do Paraná")
-regs = sorted(l for l in todos if l.startswith("RGInt"))
-localidades = []
-for l in ["Estado do Paraná"] + regs + muns:
-    if l == "Estado do Paraná":
-        localidades.append({"n": l, "t": "estado"})
-    elif l.startswith("RGInt"):
-        localidades.append({"n": l, "t": "regiao", "reg": l.replace("RGInt de ", "")})
-    else:
-        localidades.append({"n": l, "t": "municipio", "cod": cod_por_nome.get(norm(l)), "reg": reg_por_nome.get(norm(l))})
-
-idx_loc = {l["n"]: i for i, l in enumerate(localidades)}
-N = len(localidades)
+# ---------------------------------------------------------------- localidades
+localidades_ = localidades(long, ibge)
+N = len(localidades_)
+idx_loc = {l["n"]: i for i, l in enumerate(localidades_)}
 
 # ---------------------------------------------------------------- indicadores
 pilhas = {l: {} for l in long["localidade"].unique()}
@@ -199,13 +255,22 @@ for r in long.itertuples(index=False):
 
 indicadores = []
 por_ods: "OrderedDict[int, list]" = OrderedDict()
-for i, c in enumerate(catalogo):
+chaves_vistas = {}
+
+for c in catalogo:
     p = parse(c["indicador"], c["grupo_tema"])
     anos = sorted({int(a) for a in c["anos_com_dados"]})
     if not anos:
         continue
+    chave = chave_negocio(c["indicador"])
+    if chave in chaves_vistas:
+        raise ValueError("chave de negócio duplicada: %r (já usada por %s)"
+                         % (chave, chaves_vistas[chave]))
+    chaves_vistas[chave] = c["indicador"]
+    pol, pol_motivo = polaridade(c["indicador"])
     meta = {
-        "id": f"i{i}",
+        "id": id_curto(chave),
+        "chave": chave,
         "ods": c["ods"],
         "grupo": p["grupo"],
         "gcurto": GRUPOS_CURTOS.get(norm(p["grupo"]), p["grupo"]),
@@ -213,21 +278,41 @@ for i, c in enumerate(catalogo):
         "recorte": p["recorte"],
         "unidade": p["unidade"],
         "tipo": p["tipo"],
-        "pol": polaridade(c["indicador"]),
+        "pol": pol,
+        "pol_motivo": pol_motivo,
+        "proporcional": p["proporcional"],
+        "proporcional_motivo": p["proporcional_motivo"],
         "nome": curto(c["indicador"]),
         "codigo": c["codigo_ods"],
         "fonte": c["fonte"],
         "definicao": c["definicao"],
         "formula": c["formula"],
+        "arquivo": c["arquivo"],
+        "atualizado_em": str(c.get("atualizado_em") or "")[:10],
+        "n_municipios": c["n_municipios"],
+        "pct_ausente": c["pct_ausente"],
         "anos": anos,
     }
     indicadores.append(meta)
     por_ods.setdefault(c["ods"], []).append((meta, anos, c["indicador"]))
 
+# marca o indicador principal de cada ODS (chave de negocio explicita)
+for ods, nome in PRINCIPAL_POR_ODS.items():
+    achou = [m for m, _, _ in por_ods.get(ods, []) if m["nome"] == nome]
+    if not achou:
+        raise ValueError("indicador principal do ODS %d nao encontrado: %r" % (ods, nome))
+    achou[0]["principal"] = True
+for m in indicadores:
+    m.setdefault("principal", False)
+
 # ---------------------------------------------------------------- valores
 total_bytes = 0
 for ods, itens in por_ods.items():
-    linhas = ["window.BI=window.BI||{};window.BI.valores=window.BI.valores||{};"]
+    nome_arquivo = f"val_ods{ods}.js"
+    linhas = ["window.BI=window.BI||{};",
+              "window.BI.builds=window.BI.builds||{};",
+              'window.BI.builds["%s"]=%s;' % (nome_arquivo, js(BUILD)),
+              "window.BI.valores=window.BI.valores||{};"]
     for meta, anos, nome_original in itens:
         n_a = len(anos)
         arr = [None] * (N * n_a)
@@ -242,7 +327,7 @@ for ods, itens in por_ods.items():
                     arr[base + j] = round(float(v), 3)
         linhas.append(f'BI.valores["{meta["id"]}"]={js(arr)};')
     conteudo = "\n".join(linhas)
-    caminho = os.path.join(OUT, f"val_ods{ods}.js")
+    caminho = os.path.join(OUT, nome_arquivo)
     with open(caminho, "w", encoding="utf-8") as fh:
         fh.write(conteudo)
     total_bytes += len(conteudo.encode("utf-8"))
@@ -255,27 +340,33 @@ ods_meta = []
 for ods in sorted(por_ods):
     its = por_ods[ods]
     grupos = list(OrderedDict.fromkeys(m["grupo"] for m, _, _ in its))
+    principal = next((m["id"] for m, _, _ in its if m["principal"]), None)
     ods_meta.append({
         "n": ods, "nome": NOME_ODS.get(ods, ""), "cor": CORES_ODS.get(ods, "#666"),
-        "n_ind": len(its), "grupos": grupos,
+        "n_ind": len(its), "grupos": grupos, "principal": principal,
     })
 
 indice = {
-    "gerado": pd.Timestamp.now().strftime("%Y-%m-%d"),
+    "gerado": BUILD["gerado_em"][:10],
     "fonte_estado": "Paraná",
-    "localidades": localidades,
+    "localidades": localidades_,
     "indicadores": indicadores,
     "ods": ods_meta,
 }
 with open(os.path.join(OUT, "indice.js"), "w", encoding="utf-8") as fh:
-    fh.write("window.BI=window.BI||{};BI.indice=" + js(indice) + ";")
+    fh.write("window.BI=window.BI||{};window.BI.build=" + js(BUILD) +
+             ';window.BI.builds=window.BI.builds||{};window.BI.builds["indice.js"]=' + js(BUILD) +
+             ";BI.indice=" + js(indice) + ";")
 print(f"  indice.js        {os.path.getsize(os.path.join(OUT,'indice.js'))/1e6:5.2f} MB")
 
 # ---------------------------------------------------------------- mapa
+# equirretangular com correcao de latitude (paralelo padrao no centro do Parana)
+LAT0 = -23.5
+
+
 def projetar(lon, lat):
-    # equiretangular simples, ajustado para o PR
-    x = (lon + 54.3) * 1.0
-    y = (22.5 - lat) * 1.0
+    x = (lon + 54.3) * math.cos(math.radians(LAT0))
+    y = (22.5 - lat)
     return x, y
 
 
@@ -307,22 +398,53 @@ k = 1000 / (x1 - x0)
 h = round((y1 - y0) * k, 1)
 for p in paths:
     novo = []
+    xs_p, ys_p = [], []
     for seg in p["d"].split("Z"):
         if not seg:
             continue
         pts = seg.replace("M", "").split("L")
-        novo.append("M" + "L".join(
-            f"{(float(a)-x0)*k:.1f},{(float(b)-y0)*k:.1f}" for a, b in (q.split(",") for q in pts)
-        ) + "Z")
+        conv = []
+        for q in pts:
+            a, b = q.split(",")
+            nx, ny = (float(a) - x0) * k, (float(b) - y0) * k
+            xs_p.append(nx); ys_p.append(ny)
+            conv.append(f"{nx:.1f},{ny:.1f}")
+        novo.append("M" + "L".join(conv) + "Z")
     p["d"] = "".join(novo)
+    # centroide (caixa delimitadora) para o rotulo do municipio em foco
+    p["x"] = round((min(xs_p) + max(xs_p)) / 2, 1) if xs_p else 0
+    p["y"] = round((min(ys_p) + max(ys_p)) / 2, 1) if ys_p else 0
 
 mapa = {"w": 1000, "h": h, "p": paths}
 with open(os.path.join(OUT, "mapa.js"), "w", encoding="utf-8") as fh:
-    fh.write("window.BI=window.BI||{};BI.mapa=" + js(mapa) + ";")
+    fh.write("window.BI=window.BI||{};window.BI.builds=window.BI.builds||{};"
+             'window.BI.builds["mapa.js"]=' + js(BUILD) + ";BI.mapa=" + js(mapa) + ";")
 print(f"  mapa.js          {os.path.getsize(os.path.join(OUT,'mapa.js'))/1e6:5.2f} MB | {len(paths)} municipios")
 
-# ---------------------------------------------------------------- resumo
-print(f"\nlocalidades={N} indicadores={len(indicadores)} ods={len(ods_meta)}")
+# ---------------------------------------------------------------- html sincronizado
+# Reescreve as tags <script src="...js"> com a versao do build, para que o HTML
+# abra sempre o payload da mesma geracao (e o navegador nao sirva cache velho).
+caminho_html = os.path.join(ROOT, "prototipo.html")
+with open(caminho_html, encoding="utf-8") as fh:
+    html = fh.read()
+html = re.sub(r'(src="(?:core\.js|data/bi/[a-z0-9_]+\.js))(\?v=[0-9a-f]+)?"',
+              r'\1?v=' + BUILD_ID + '"', html)
+with open(caminho_html, "w", encoding="utf-8") as fh:
+    fh.write(html)
+print(f"  prototipo.html    sincronizado com o build {BUILD_ID}")
+
+# ---------------------------------------------------------------- resumo e checagens
+print(f"\nlocalidades={N} indicadores={len(indicadores)} ods={len(ods_meta)} build={BUILD_ID}")
 print("tipos:", pd.Series([i["tipo"] for i in indicadores]).value_counts().to_dict())
 print("polaridade:", pd.Series([i["pol"] for i in indicadores]).value_counts().to_dict())
+print("proporcionais (contagens -> por 100 mil hab.):",
+      sum(1 for i in indicadores if i["proporcional"]))
 print("sem recorte:", sum(1 for i in indicadores if not i["recorte"]))
+
+# checagens de contrato (falham alto, nao apenas avisam)
+assert len(indicadores) == len(catalogo) - 2, (
+    "esperados 194 indicadores (2 sem dados no catalogo), vieram %d" % len(indicadores))
+assert len({i["id"] for i in indicadores}) == len(indicadores), "id de indicador duplicado"
+assert all(i["anos"] == sorted(i["anos"]) for i in indicadores), "anos fora de ordem"
+assert all(i["n_municipios"] == 399 for i in indicadores), "indicador sem os 399 municipios"
+print("checagens de contrato: OK")

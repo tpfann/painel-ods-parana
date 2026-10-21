@@ -17,22 +17,23 @@
     </div>
   </div>
 
-  <nav class="tabs" id="tabs">
-    <button data-view="geral" class="active">Visão geral</button>
-    <button data-view="explorador">Explorador</button>
-    <button data-view="comparador">Comparador</button>
-    <button data-view="revisao">Revisão</button>
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Visões do painel">
+    <button data-view="geral" class="active" role="tab" aria-selected="true">Visão geral</button>
+    <button data-view="explorador" role="tab" aria-selected="false">Explorador</button>
+    <button data-view="comparador" role="tab" aria-selected="false">Comparador</button>
+    <button data-view="revisao" role="tab" aria-selected="false">Revisão</button>
   </nav>
 
   <div class="top-actions">
     <div class="picker">
-      <button class="picker-btn" id="btn-local">Guarapuava</button>
+      <button class="picker-btn" id="btn-local" aria-haspopup="listbox">Guarapuava</button>
       <div class="picker-pop" id="pop-local">
-        <input type="search" id="busca-local" placeholder="Buscar município…" autocomplete="off">
-        <div class="picker-list" id="lista-local"></div>
+        <input type="search" id="busca-local" placeholder="Buscar município…" autocomplete="off" aria-label="Buscar município">
+        <div class="picker-list" id="lista-local" role="listbox"></div>
       </div>
     </div>
     <select class="select" id="sel-ano" aria-label="Ano de referência"></select>
+    <button class="btn-add" id="btn-imprimir" title="Imprimir ou salvar em PDF">Imprimir</button>
   </div>
 </header>
 
@@ -50,6 +51,7 @@
     </div>
 
     <div class="ods-grid" id="ods-grid"></div>
+    <div id="nota-sintese"></div>
     <p class="nota" style="margin:-12px 0 22px">Cada cartão usa o <b>último dado disponível</b> do indicador; o selo âmbar marca dado anterior a 2025. Indicadores de contagem (ex.: esgoto, energia) aparecem em volume absoluto, sem juízo de bom/ruim.</p>
 
     <div class="duo">
@@ -134,8 +136,9 @@
       </div>
       <p class="nota">
         “Maior é melhor” / “menor é melhor” define a cor (verde/vermelho), a ordem no ranking e o que entra em
-        <b>melhores posições</b> e <b>pontos de atenção</b>. As escolhas ficam salvas neste navegador e podem ser
-        exportadas em JSON para virar padrão no gerador de dados.
+        <b>melhores posições</b> e <b>pontos de atenção</b>. As escolhas ficam salvas neste navegador e são
+        exportadas em JSON — indexado pelo <b>nome da coluna de origem</b> (chave estável entre versões da base),
+        para virar padrão no gerador de dados.
       </p>
       <div class="rev-ctrls">
         <select class="select" id="rev-ods" aria-label="Filtrar por ODS"></select>
@@ -148,7 +151,7 @@
         </select>
         <label class="rev-check"><input type="checkbox" id="rev-pend"> somente não revisados</label>
         <span style="flex:1"></span>
-        <button class="btn-add" id="rev-export">Copiar JSON das alterações</button>
+        <button class="btn-add" id="rev-export">Exportar JSON das alterações</button>
         <button class="btn-add" id="rev-clear">Limpar revisão</button>
       </div>
       <div id="rev-lista"></div>
@@ -157,23 +160,26 @@
 
 </main>
 
+<footer class="rodape" id="rodape"></footer>
+
 <div class="proto-flag">protótipo</div>
 
-<script src="data/bi/indice.js"></script>
-<script src="data/bi/val_ods1.js"></script>
-<script src="data/bi/val_ods2.js"></script>
-<script src="data/bi/val_ods3.js"></script>
-<script src="data/bi/val_ods4.js"></script>
-<script src="data/bi/val_ods5.js"></script>
-<script src="data/bi/val_ods6.js"></script>
-<script src="data/bi/val_ods7.js"></script>
-<script src="data/bi/val_ods8.js"></script>
-<script src="data/bi/val_ods9.js"></script>
-<script src="data/bi/val_ods13.js"></script>
-<script src="data/bi/val_ods15.js"></script>
-<script src="data/bi/val_ods16.js"></script>
-<script src="data/bi/mapa.js"></script>
-<script src="data/bi/populacao.js"></script>
+<script src="core.js?v=8f4aec016b1a"></script>
+<script src="data/bi/indice.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods1.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods2.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods3.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods4.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods5.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods6.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods7.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods8.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods9.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods13.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods15.js?v=8f4aec016b1a"></script>
+<script src="data/bi/val_ods16.js?v=8f4aec016b1a"></script>
+<script src="data/bi/mapa.js?v=8f4aec016b1a"></script>
+<script src="data/bi/populacao.js?v=8f4aec016b1a"></script>
 <script src="prototipo.js"></script>
 </body>
 </html>

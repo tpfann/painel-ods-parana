@@ -1,14 +1,18 @@
 """
-Le os 39 arquivos .xlsx da pasta 'Base de Dados' e o Dicionario, sem carregar
+Le os 38 arquivos .xlsx da pasta 'Base de Dados' e o Dicionario, sem carregar
 os dados inteiros em memoria de forma desnecessaria, e gera:
 
   - data/catalog.json      (metadados de cada indicador + cobertura temporal)
-  - data/long.parquet      (base normalizada em formato longo)
+  - data/long.csv.gz       (base normalizada em formato longo, comprimida)
 
 Formato de origem (todas as planilhas):
     Assunto | Localidade | Ano | <coluna do indicador> (1..N colunas)
 
-Codigos de ausencia encontrados: '...' e '-'
+Codigos de ausencia encontrados: '...', '-', '..' e celula vazia.
+
+Aviso de parsing: o separador de milhar brasileiro ('1.234') so e convertido
+quando ha virgula decimal ('1.234,5'); senao o numero seria lido 1000x menor.
+Zeros sao valores reais e nunca viram nulo.
 
 Uso: python scripts/01_build_catalog.py
 """
@@ -29,10 +33,11 @@ DICT_DIR = os.path.join(ROOT, "Dicionário")
 OUT = os.path.join(ROOT, "data")
 
 NULL_TOKENS = {"...", "-", "..", "", "NA", "nd", "s/i"}
+N_MUNICIPIOS_ESPERADO = 399
 
 
 def clean(v):
-    """Converte para float ou None."""
+    """Converte para float ou None. Zero e valor real."""
     if v is None:
         return None
     if isinstance(v, float) and v != v:  # NaN do pandas/Excel
@@ -42,7 +47,13 @@ def clean(v):
     s = str(v).strip()
     if s in NULL_TOKENS:
         return None
-    s = s.replace(".", "").replace(",", ".") if re.fullmatch(r"[\d.]+,\d+", s) else s
+    # numero brasileiro: 1.234,56 -> 1234.56 ; 1.234 (milhar) -> 1234
+    if re.fullmatch(r"\d{1,3}(\.\d{3})+,\d+", s):
+        s = s.replace(".", "").replace(",", ".")
+    elif re.fullmatch(r"\d{1,3}(\.\d{3})+", s):
+        s = s.replace(".", "")
+    elif re.fullmatch(r"\d+,\d+", s):
+        s = s.replace(",", ".")
     try:
         return float(s)
     except ValueError:
@@ -117,7 +128,6 @@ def main() -> None:
             per_year = (
                 sub[sel].groupby("ano").size().to_dict() if sel.any() else {}
             )
-            years_ok = sorted([int(y) for y, n in per_year.items() if n >= 0.5 * sub["localidade"].nunique() * 0 + 0])
             # anos com pelo menos 1 valor
             years_any = sorted(int(y) for y in per_year)
             # anos com cobertura >= 80% dos municipios (399)
@@ -167,9 +177,6 @@ def main() -> None:
     print(f"localidades distintas={len(locs)} | estado={('Estado do Paraná' in locs)} | "
           f"rgint={sum(1 for l in locs if l.startswith('RGInt'))}")
     print(f"anos: {long['ano'].min()}..{long['ano'].max()}")
-    print("\n| # | ODS | arquivo | cols | anos | %ausente |")
-    for i, c in enumerate(catalog, 1):
-        pass
     by_file = Counter(c["arquivo"] for c in catalog)
     for f in files:
         cs = [c for c in catalog if c["arquivo"] == os.path.basename(f)]
@@ -179,6 +186,19 @@ def main() -> None:
             f"{c0['ano_min']}-{c0['ano_max']} | mun={c0['n_municipios']} | "
             f"ausente={sum(x['pct_ausente'] for x in cs)/len(cs):5.1f}% | {os.path.basename(f)[:70]}"
         )
+
+    # ---- checagens de contrato (falham alto) ----
+    n_mun_total = sum(1 for l in locs if not l.startswith("RGInt") and l != "Estado do Paraná")
+    assert n_mun_total == N_MUNICIPIOS_ESPERADO, (
+        "esperados %d municipios, vieram %d" % (N_MUNICIPIOS_ESPERADO, n_mun_total))
+    assert sum(c["duplicados"] for c in catalog) == 0, "ha duplicados (localidade, ano)"
+    assert not unmatched, "colunas sem match no dicionario: %s" % unmatched[:3]
+    assert len({c["indicador"] for c in catalog}) == len(catalog), "indicadores duplicados no catalogo"
+    sem_dado = [c["indicador"] for c in catalog if c["ano_min"] is None]
+    assert len(sem_dado) <= 2, "indicadores sem nenhum dado além do esperado: %s" % sem_dado
+    if sem_dado:
+        print("indicadores 100%% vazios (ignorados no BI): %s" % sem_dado)
+    print("checagens de contrato: OK")
 
 
 if __name__ == "__main__":

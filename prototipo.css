@@ -14,7 +14,7 @@
   --surface:#FFFFFF;
   --ink:#0D1520;
   --ink-2:#475569;
-  --muted:#7C889B;
+  --muted:#5A6678;   /* 5,4:1 sobre branco (WCAG AA) */
   --line:#E3E8EF;
   --line-2:#EDF1F5;
   --brand:#114E7A;
@@ -226,9 +226,70 @@ main{max-width:1440px;margin:0 auto;padding:40px 24px 60px}
 .rev-pol button.on.p0{background:var(--brand-soft);color:var(--brand);border-color:#C9DDEB}
 .rev-tag{font-size:10px;color:var(--muted);border:1px solid var(--line);border-radius:5px;padding:1px 6px;margin-left:4px}
 .rev-tag.ok{background:var(--brand-soft);color:var(--brand);border-color:#C9DDEB}
+.rev-motivo{display:block;font-size:10.5px;color:var(--muted);font-style:italic;margin-top:2px}
 .aviso-box{background:var(--warn-soft);border:1px solid #EFDDBD;color:#8A5A12;border-radius:10px;
   padding:10px 13px;font-size:12.5px;line-height:1.5;margin-top:14px}
 .aviso-box b{color:#7A4E0C;font-weight:600}
+
+/* ---------- mapa: tooltip, rótulo e foco ---------- */
+#mapa,#mapa-det{position:relative}
+.mapa-tip{
+  position:absolute;display:none;pointer-events:none;z-index:5;min-width:150px;max-width:210px;
+  background:rgba(13,21,32,.94);color:#fff;border-radius:9px;padding:8px 11px;font-size:11.5px;line-height:1.45;
+  box-shadow:0 6px 18px rgba(13,21,32,.22);
+}
+.mapa-tip.on{display:block}
+.mapa-tip b{display:block;font-weight:600;font-size:12.5px}
+.mapa-tip span{display:block;margin-top:2px;font-variant-numeric:tabular-nums}
+.mapa-tip small{display:block;margin-top:3px;opacity:.75;font-size:10.5px}
+.mapa-foco-rot{font-size:9px;font-weight:600;fill:#0D1520;paint-order:stroke;stroke:#fff;stroke-width:2.4px}
+#mapa path,#mapa-det path{cursor:pointer}
+#mapa path.foco,#mapa-det path.foco{filter:drop-shadow(0 1px 2px rgba(13,21,32,.35))}
+
+/* ---------- modos do ranking ---------- */
+.rank-modos{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.rank-modos button{padding:4px 10px;font-size:11.5px;font-weight:500;color:var(--ink-2);border-right:1px solid var(--line-2)}
+.rank-modos button:last-child{border-right:0}
+.rank-modos button.on{background:var(--brand-soft);color:var(--brand);font-weight:600}
+
+/* ---------- auditoria de síntese ---------- */
+.auditoria{margin:-4px 0 16px;font-size:11.5px;color:var(--ink-2)}
+.auditoria summary{cursor:pointer;color:var(--ink-2);padding:6px 0}
+.auditoria summary:hover{color:var(--brand)}
+.auditoria ul{margin:6px 0 8px;padding-left:18px;max-height:210px;overflow:auto}
+.auditoria li{margin:2px 0;color:var(--ink-2)}
+.auditoria li b{color:var(--ink);font-weight:600}
+.auditoria p{font-size:11px;color:var(--muted);margin-top:4px}
+.auditoria a{color:var(--brand)}
+
+/* ---------- rodapé ---------- */
+.rodape{
+  max-width:1440px;margin:0 auto;padding:18px 24px 40px;display:flex;flex-wrap:wrap;gap:6px 22px;
+  border-top:1px solid var(--line);font-size:11px;color:var(--muted);
+}
+.rodape b{color:var(--ink-2);font-weight:600}
+.rodape code{font-size:10.5px;background:var(--line-2);padding:1px 5px;border-radius:4px}
+.rodape a{color:var(--brand)}
+
+/* ---------- erro de carga ---------- */
+.erro-carga{max-width:760px;margin:80px auto;padding:28px 32px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+.erro-carga h1{font-size:19px;margin-bottom:8px;color:var(--bad)}
+.erro-carga ul{margin:10px 0;padding-left:20px;font-size:13px;color:var(--ink-2)}
+.erro-carga .dica{font-size:12px;color:var(--muted)}
+.erro-carga code{background:var(--line-2);padding:1px 5px;border-radius:4px}
+
+/* ---------- foco visível ---------- */
+:focus-visible{outline:2px solid var(--brand-2);outline-offset:2px;border-radius:6px}
+
+/* ---------- impressão ---------- */
+@media print{
+  .topbar,.proto-flag,#btn-imprimir,.mapa-tip,.rev-ctrls{display:none !important}
+  body{background:#fff}
+  .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
+  main{padding:0}
+  .rodape{border-top:1px solid #ccc}
+}
 
 /* ---------- explorador ---------- */
 .explorer{display:grid;grid-template-columns:320px 1fr;gap:16px;align-items:start}

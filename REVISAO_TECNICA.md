@@ -1,7 +1,19 @@
 # Revisão técnica e crítica — Painel ODS · Paraná
 
-**Data:** 21/10/2026 · **Escopo:** `prototipo.html`, `prototipo.css`, `prototipo.js`, `scripts/01–04`, `data/bi/*`, `data/geo/*`, `DATA_SCHEMA.md`
+**Data:** 21/10/2026 · **Escopo:** `prototipo.html`, `prototipo.css`, `prototipo.js`, `core.js`, `scripts/00–06`, `data/bi/*`, `data/geo/*`, `DATA_SCHEMA.md`, `DECISOES.md`
 **Natureza:** diagnóstico e proposta. **Nada foi implementado** — este documento é o insumo para a próxima rodada de trabalho.
+
+> **Atualização de 21/10/2026 (tarde):** as recomendações foram **implementadas**.
+> Estado de cada item: §3.1 (P0) — G1 ✅, G2 ✅, G3 ✅, E1 ✅, E2 ✅, E3 ✅, E4 ✅ ·
+> §3.2 (P1) — P1.1 ✅, P1.2 ✅, P1.3 ✅, P1.4/1.5 ✅, P1.6 ✅, P1.7 ✅ ·
+> §3.3 (P2) — P2.0 ✅ (primeiro commit + `.gitignore`), P2.1 ✅, P2.2 ✅, P2.3 ✅,
+> P2.4 ✅, P2.5 ✅ (`scripts/06_test_core.js`, 54 asserções), P2.6 ✅ (intermediários fora
+> do versionamento), P2.7 ✅, P2.8 ✅, P2.9 ✅ (Censo 2010 oficial), P2.10 ✅ (`README.md`),
+> P2.11 ✅ (rodapé com build), P2.12 ✅ (projeção com correção de latitude).
+> A metodologia nova está em **`DECISOES.md` §2**; o catálogo de dados gerado ficou em
+> **`DATA_SCHEMA.md`** (números calculados) e as decisões curadas à mão em **`DECISOES.md`**.
+> Efeito de E1 medido: “acima da mediana” passou de 30/75 para **26/53** e o semáforo
+> de **5/10** para **5/8** ODS.
 
 ---
 
@@ -80,7 +92,7 @@ Números citados são medidos, não estimados.
   - o **semáforo de ODS muda**: ODS 3 de 41 → 47, ODS 5 de 41 → 27, e **ODS 13 e ODS 16 passam a "—"** (nenhum indicador com poder de discriminação) — ou seja, hoje o semáforo **diz que ODS 13 e 16 têm posição** justamente nos indicadores que a lista de "pontos de atenção" descarta;
   - indicadores com **n = 1** entram com peso 1 voto e percentil 0 ou 100.
 - **Proposta (metodológica, prioridade máxima depois de G1–G3):**
-  1. definir um **critério deikhonestidade** explícito: um indicador só é usado em síntese (hero, semáforo, destaques) se `n ≥ 30` **e** `empateFrac ≤ 0.3` **e** `distintos ≥ 5`; o motivo da exclusão passa a ser exibido ("excluído: 354 municípios empatados");
+  1. definir um **critério de honestidade** explícito: um indicador só é usado em síntese (hero, semáforo, destaques) se `n ≥ 30` **e** `empateFrac ≤ 0.3` **e** `distintos ≥ 5`; o motivo da exclusão passa a ser exibido ("excluído: 354 municípios empatados");
   2. o percentil passa a ser **percentil de/aws2** com correção por empates (mid-rank) ou a sintese passa a usar a **posição competitiva** (que já distingue empates) em vez do percentil bruto;
   3. o semáforo de ODS passa a ser ponderado pelo número de indicadores **com poder de discriminação** de cada ODS, e a mostrar "—" quando o ODS não tem nenhum (em vez de um número herdado de 1 indicador degenerado);
   4. publicar a regra no `DECISOES.md` (metodologia é decisão, não detalhe de implementação).
