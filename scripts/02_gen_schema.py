@@ -32,11 +32,18 @@ def curto(nome: str) -> str:
     return re.sub(r"^ODS - Objetivo \d+ - ", "", nome).strip()
 
 
+def extrair_json(txt: str, marcador: str):
+    """Extrai o primeiro objeto JSON que vier depois do marcador."""
+    i = txt.index(marcador) + len(marcador)
+    obj, _ = json.JSONDecoder().raw_decode(txt[i:].lstrip())
+    return obj
+
+
 def main() -> None:
     cat = json.load(open(CAT, encoding="utf-8"))
     txt = open(INDICE, encoding="utf-8").read()
-    ind = json.loads(txt.split("BI.indice=", 1)[1].rstrip().rstrip(";"))
-    build = json.loads(txt.split("window.BI.build=", 1)[1].split(";BI.indice=")[0])
+    ind = extrair_json(txt, "BI.indice=")
+    build = extrair_json(txt, "window.BI.build=")
 
     inds = ind["indicadores"]
     locs = ind["localidades"]
