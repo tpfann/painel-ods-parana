@@ -35,6 +35,17 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = os.path.join(ROOT, "data", "bi")
 os.makedirs(OUT, exist_ok=True)
 
+
+def ler_fontes():
+    """Registro de fontes oficiais (data/fontes.csv) — a proveniencia de cada espelho local."""
+    caminho = os.path.join(ROOT, "data", "fontes.csv")
+    if not os.path.exists(caminho):
+        return {}
+    import csv
+    import io
+    with io.open(caminho, encoding="utf-8-sig", newline="") as fh:
+        return {r["arquivo"]: r for r in csv.DictReader(fh, delimiter=";")}
+
 CORES_ODS = {
     1: "#E5243B", 2: "#DDA63A", 3: "#4C9F38", 4: "#C5192D", 5: "#FF3A21",
     6: "#26BDE2", 7: "#FCC30B", 8: "#A21942", 9: "#FD6925", 10: "#DD1367",
@@ -225,6 +236,9 @@ if os.path.exists(caminho_pop):
     with open(caminho_pop, "rb") as fh:
         pop_bytes = fh.read()
 
+# registro de fontes oficiais (proveniencia de cada espelho local)
+FONTES = ler_fontes()
+
 # manifest: identidade do payload ( impede misturar geracoes diferentes )
 # REGRAS_VERSION entra no hash: se as regras de derivacao mudarem (polaridade,
 # proporcionalidade, rotulos), o build muda e o app recusa payload antigo.
@@ -268,6 +282,7 @@ for c in catalogo:
                          % (chave, chaves_vistas[chave]))
     chaves_vistas[chave] = c["indicador"]
     pol, pol_motivo = polaridade(c["indicador"])
+    fonte = FONTES.get(c["arquivo"], {})
     meta = {
         "id": id_curto(chave),
         "chave": chave,
@@ -291,6 +306,13 @@ for c in catalogo:
         "atualizado_em": str(c.get("atualizado_em") or "")[:10],
         "n_municipios": c["n_municipios"],
         "pct_ausente": c["pct_ausente"],
+        # proveniencia da fonte oficial (data/fontes.csv)
+        "fonte_id": fonte.get("id", ""),
+        "fonte_publicador": fonte.get("publicador", ""),
+        "fonte_acesso": fonte.get("tipo_acesso", ""),
+        "fonte_url": fonte.get("url_landing", ""),
+        "fonte_baixado": fonte.get("ultima_aquisicao", ""),
+        "fonte_sha": (fonte.get("sha256", "") or "")[:12],
         "anos": anos,
     }
     indicadores.append(meta)

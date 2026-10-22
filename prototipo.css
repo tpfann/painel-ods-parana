@@ -270,6 +270,7 @@ main{max-width:1440px;margin:0 auto;padding:40px 24px 60px}
 .rodape b{color:var(--ink-2);font-weight:600}
 .rodape code{font-size:10.5px;background:var(--line-2);padding:1px 5px;border-radius:4px}
 .rodape a{color:var(--brand)}
+.rodape-alerta{color:var(--warn);font-weight:500}
 
 /* ---------- erro de carga ---------- */
 .erro-carga{max-width:760px;margin:80px auto;padding:28px 32px;background:var(--surface);

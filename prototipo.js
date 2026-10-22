@@ -966,7 +966,15 @@
         <div><dt>Unidade</dt><dd>${esc(ind.unidade || "—")}</dd></div>
         <div><dt>Fonte</dt><dd>${esc(ind.fonte || "—")}</dd></div>
         <div><dt>Planilha de origem</dt><dd>${esc(ind.arquivo || "—")}</dd></div>
-        <div><dt>Atualizado em</dt><dd>${esc((ind.atualizado_em || "—") + (ind.atualizado_em ? "" : ""))}</dd></div>
+        <div><dt>Atualizado em</dt><dd>${esc(ind.atualizado_em || "—")}</dd></div>
+        <div class="wide"><dt>Fonte oficial</dt><dd>${ind.fonte_publicador
+          ? esc(ind.fonte_publicador) +
+            (ind.fonte_url ? ` — <a href="${esc(ind.fonte_url)}" target="_blank" rel="noopener">${esc(ind.fonte_url)}</a>` : "")
+          : "—"}
+          ${ind.fonte_baixado ? `<br><small>espelho local baixado em ${esc(ind.fonte_baixado)}` +
+            (ind.fonte_sha ? ` · sha256 ${esc(ind.fonte_sha)}…` : "") + "</small>" : ""}
+          ${ind.fonte_id ? `<br><small>fonte ${esc(ind.fonte_id)} no registro de fontes</small>` : ""}
+        </dd></div>
         <div><dt>Municípios com dado</dt><dd>${st2 ? st2.n + " de " + MUN.length : "—"} (no ano ${ano})</dd></div>
         <div><dt>Valores distintos</dt><dd>${st2 ? st2.distintos : "—"}</dd></div>
         <div class="wide"><dt>Definição</dt><dd>${esc(ind.definicao || "—")}</dd></div>
@@ -1312,13 +1320,19 @@
     if (!rodape) return;
     const b = EN.build || {};
     const pop = POP && POP.info ? POP.info : null;
+    const fs = EN.fontes || null;
+    const aviso = fs && (fs.pendentes || fs.urls_quebradas)
+      ? `<span class="rodape-alerta">⚠ ${fs.pendentes || 0} fonte(s) oficial(is) aguardando nova edição` +
+        `${fs.urls_quebradas ? " · " + fs.urls_quebradas + " com URL alterada" : ""} — ver data/FONTES.md</span>`
+      : `<span>Fontes oficiais: ${fs ? fs.total : "—"} registradas, todas em dia</span>`;
     rodape.innerHTML =
       `<span>Base gerada em <b>${esc(b.gerado_em || EN.indice.gerado || "—")}</b> · build <code>${esc(b.id || "—")}</code>` +
       `${b.regras ? " · regras " + esc(b.regras) : ""}</span>` +
       `<span>${INDS.length} indicadores · ${MUN.length} municípios · dados do IBGE (Censos 2010 e 2022, estimativas)</span>` +
       (pop && pop.anos_interpolados && pop.anos_interpolados.length
         ? `<span>População interpolada pelo IBGE em ${pop.anos_interpolados.join(", ")}</span>` : "") +
-      `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a></span>`;
+      aviso +
+      `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a> · <a href="data/FONTES.md" target="_blank">Fontes oficiais</a></span>`;
   }
 
   /* ---------------------------------------------------------- init */
