@@ -280,6 +280,73 @@ main{max-width:1440px;margin:0 auto;padding:40px 24px 60px}
 .erro-carga .dica{font-size:12px;color:var(--muted)}
 .erro-carga code{background:var(--line-2);padding:1px 5px;border-radius:4px}
 
+/* ---------- leitor de documentos (metodologia, dicionário, fontes) ---------- */
+.doc-viewer{position:fixed;inset:0;z-index:80;display:flex;align-items:center;justify-content:center;padding:24px}
+.doc-viewer[hidden]{display:none}
+.doc-fundo{position:absolute;inset:0;background:rgba(13,21,32,.45);backdrop-filter:blur(2px)}
+.doc-painel{
+  position:relative;display:flex;flex-direction:column;
+  width:min(1120px,100%);max-height:min(88vh,900px);
+  background:var(--surface);border-radius:var(--radius);box-shadow:0 24px 60px rgba(13,21,32,.22);
+  overflow:hidden;
+}
+.doc-topo{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:18px 24px;border-bottom:1px solid var(--line);background:var(--surface);
+}
+.doc-titulo{margin:0;font-size:17px;font-weight:600;letter-spacing:-.01em}
+.doc-sub{margin:3px 0 0;font-size:12px;color:var(--muted);line-height:1.45}
+.doc-acoes{display:flex;align-items:center;gap:10px;flex:none}
+.doc-baixar{font-size:12px;color:var(--brand-2);text-decoration:none;padding:6px 8px;border-radius:8px}
+.doc-baixar:hover{background:var(--brand-soft)}
+.doc-fechar{
+  border:1px solid var(--line);background:var(--surface);border-radius:10px;
+  padding:7px 14px;font-size:12.5px;font-weight:600;color:var(--ink-2);cursor:pointer;
+}
+.doc-fechar:hover{background:var(--line-2);color:var(--ink)}
+.doc-corpo{overflow:auto;padding:26px 30px 34px;scroll-behavior:smooth}
+
+/* tipografia do documento — leitura longa, coluna confortável */
+.md{font-size:14px;line-height:1.65;color:var(--ink)}
+/* texto em coluna confortável; tabelas e código usam a largura toda */
+.md>p,.md>ul,.md>ol,.md>blockquote,.md>h1,.md>h2,.md>h3,.md>h4{max-width:78ch}
+.md>p>strong{font-weight:600}
+.md>*:first-child{margin-top:0}
+.md h1{font-size:21px;font-weight:600;letter-spacing:-.015em;margin:0 0 14px;line-height:1.3}
+.md h2{font-size:16px;font-weight:600;margin:30px 0 10px;padding-top:14px;border-top:1px solid var(--line-2)}
+.md h3{font-size:14.5px;font-weight:600;margin:22px 0 8px}
+.md h4{font-size:13.5px;font-weight:600;margin:18px 0 6px;color:var(--ink-2)}
+.md p{margin:0 0 12px}
+.md ul,.md ol{margin:0 0 14px;padding-left:22px}
+.md li{margin:4px 0}
+.md li>ul,.md li>ol{margin:4px 0 0}
+.md strong{font-weight:600}
+.md code{background:var(--line-2);padding:1px 5px;border-radius:5px;font-size:12.5px;
+  font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.md pre{background:#0D1520;color:#E6EDF5;padding:14px 16px;border-radius:10px;overflow:auto;margin:0 0 14px}
+.md pre code{background:none;padding:0;color:inherit;font-size:12.5px}
+.md blockquote{margin:0 0 14px;padding:10px 14px;border-left:3px solid var(--brand-2);
+  background:var(--brand-soft);border-radius:0 8px 8px 0;color:var(--ink-2)}
+.md blockquote p{margin:0}
+.md hr{border:none;border-top:1px solid var(--line);margin:22px 0}
+.md a{color:var(--brand-2);text-decoration:underline;text-underline-offset:2px}
+.md-tabela{overflow-x:auto;margin:0 0 18px;border:1px solid var(--line);border-radius:10px}
+.md table{border-collapse:collapse;width:100%;font-size:12.5px;min-width:520px}
+.md th,.md td{padding:8px 11px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-2)}
+.md th{background:var(--brand-soft);font-weight:600;font-size:11.5px;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--brand);position:sticky;top:0}
+.md tr:last-child td{border-bottom:none}
+.md tbody tr:nth-child(even) td{background:#FBFCFD}
+
+/* links de documento no rodapé e no texto */
+.link-doc{
+  border:none;background:none;padding:0;font:inherit;color:var(--brand-2);
+  text-decoration:underline;text-underline-offset:2px;cursor:pointer;
+}
+.link-doc:hover{color:var(--brand)}
+
+@media print{.doc-viewer{display:none !important}}
+
 /* ---------- foco visível ---------- */
 :focus-visible{outline:2px solid var(--brand-2);outline-offset:2px;border-radius:6px}
 

@@ -18,6 +18,7 @@ import os
 import shutil
 import subprocess
 import sys
+import tempfile
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PUB = os.path.join(ROOT, "public")
@@ -47,10 +48,9 @@ def main() -> None:
         return
 
     # branch orfa: so a versao publica, com um unico commit por publicacao
-    tmp = os.path.join(ROOT, ".publish_tmp")
-    if os.path.isdir(tmp):
-        shutil.rmtree(tmp, ignore_errors=True)
-    shutil.copytree(PUB, tmp)
+    # (pasta temporaria unica: no Windows o git pode segurar arquivos do repo)
+    tmp = tempfile.mkdtemp(prefix="painelods-pub-")
+    shutil.copytree(PUB, tmp, dirs_exist_ok=True)
     for junk in (".DS_Store",):
         for r, _, fs in os.walk(tmp):
             for f in fs:

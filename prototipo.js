@@ -638,7 +638,7 @@
       notaSintese.innerHTML = foraDaSintese.length
         ? `<details class="auditoria"><summary>${foraDaSintese.length} de ${eleg.length} indicadores ficaram fora das sínteses (card acima, semáforo e destaques) — ver lista</summary>
            <ul>${foraDaSintese.map((f) => `<li><b>${esc(f.ind.gcurto)}</b>${f.ind.recorte && f.ind.recorte !== "Total" ? " · " + esc(f.ind.recorte) : ""} — ${esc(f.motivo)}</li>`).join("")}</ul>
-           <p>Regra: só entra em síntese o indicador com medida comparável, juízo de valor e base de comparação suficiente (≥ ${C.REGRAS.N_MIN} municípios com dado, maior grupo de empate ≤ ${Math.round(C.REGRAS.EMPATE_MAX * 100)}%, ≥ ${C.REGRAS.DISTINTOS_MIN} valores distintos). <a href="DECISOES.md" target="_blank">Ver metodologia</a></p>
+           <p>Regra: só entra em síntese o indicador com medida comparável, juízo de valor e base de comparação suficiente (≥ ${C.REGRAS.N_MIN} municípios com dado, maior grupo de empate ≤ ${Math.round(C.REGRAS.EMPATE_MAX * 100)}%, ≥ ${C.REGRAS.DISTINTOS_MIN} valores distintos). <button type="button" class="link-doc" data-doc="metodologia">Ver metodologia</button></p>
            </details>`
         : `<p class="nota">Todos os ${eleg.length} indicadores comparáveis entraram nas sínteses.</p>`;
     }
@@ -1341,7 +1341,7 @@
     const mon = EN.monitoramento || null;
     const aviso = fs && (fs.pendentes || fs.urls_quebradas)
       ? `<span class="rodape-alerta">⚠ ${fs.pendentes || 0} fonte(s) oficial(is) aguardando nova edição` +
-        `${fs.urls_quebradas ? " · " + fs.urls_quebradas + " com URL alterada" : ""} — ver data/FONTES.md</span>`
+        `${fs.urls_quebradas ? " · " + fs.urls_quebradas + " com URL alterada" : ""} — <button type="button" class="link-doc" data-doc="fontes">ver fontes oficiais</button></span>`
       : `<span>Fontes oficiais: ${fs ? fs.total : "—"} registradas, todas em dia</span>`;
     const monTexto = mon
       ? `<span>Monitoramento verificado em ${esc(mon.verificado_em || "—")}` +
@@ -1360,7 +1360,75 @@
       aviso +
       monTexto +
       monAviso +
-      `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a> · <a href="data/FONTES.md" target="_blank">Fontes oficiais</a> · <a href="data/CONVERGENCIA.md" target="_blank">Convergência com o IDSC</a></span>`;
+      `<span><button type="button" class="link-doc" data-doc="metodologia">Metodologia e decisões</button> · <button type="button" class="link-doc" data-doc="dicionario">Dicionário de dados</button> · <button type="button" class="link-doc" data-doc="fontes">Fontes oficiais</button> · <button type="button" class="link-doc" data-doc="convergencia">Convergência com o IDSC</button></span>`;
+  }
+
+  /* ---------------------------------------------------------- leitor de documentos */
+  // Os .md não rendem no navegador (no Pages viram texto/arquivo; em file:// nem
+  // abrem). O gerador converte tudo em HTML (data/bi/docs.js) e o painel abre
+  // aqui: mesma tipografia, tabelas formatadas, funciona offline.
+  const DOC_ARQUIVO = {
+    metodologia: "DECISOES.md",
+    dicionario: "DATA_SCHEMA.md",
+    fontes: "data/FONTES.md",
+    convergencia: "data/CONVERGENCIA.md",
+  };
+  let docFocoAnterior = null;
+
+  function abrirDoc(ident) {
+    const vista = $("#doc-viewer");
+    if (!vista) return;
+    const docs = (window.BI && window.BI.docs) || {};
+    const d = docs[ident];
+    if (!d) {
+      // payload antigo (sem docs.js): abre o arquivo original, sem quebrar
+      if (DOC_ARQUIVO[ident]) window.open(DOC_ARQUIVO[ident], "_blank", "noopener");
+      return;
+    }
+    docFocoAnterior = document.activeElement;
+    $("#doc-titulo").textContent = d.titulo || ident;
+    $("#doc-sub").textContent = d.descricao || "";
+    const corpo = $("#doc-corpo");
+    corpo.innerHTML = d.html || "";
+    corpo.scrollTop = 0;
+    const baixar = $("#doc-baixar");
+    if (baixar) {
+      baixar.href = d.arquivo || DOC_ARQUIVO[ident] || "#";
+      baixar.setAttribute("download", "");
+      baixar.title = "Baixar o arquivo original (.md)";
+    }
+    vista.hidden = false;
+    corpo.focus({ preventScroll: true });
+  }
+
+  function fecharDoc() {
+    const vista = $("#doc-viewer");
+    if (!vista || vista.hidden) return;
+    vista.hidden = true;
+    $("#doc-corpo").innerHTML = "";
+    if (docFocoAnterior && docFocoAnterior.focus) {
+      docFocoAnterior.focus({ preventScroll: true });
+    }
+    docFocoAnterior = null;
+  }
+
+  function ligarDocs() {
+    document.addEventListener("click", (ev) => {
+      const alvo = ev.target.closest("[data-doc], [data-fechar-doc], #doc-fechar");
+      if (!alvo) return;
+      if (alvo.id === "doc-fechar" || alvo.hasAttribute("data-fechar-doc")) {
+        ev.preventDefault();
+        fecharDoc();
+        return;
+      }
+      if (alvo.dataset.doc) {
+        ev.preventDefault();
+        abrirDoc(alvo.dataset.doc);
+      }
+    });
+    document.addEventListener("keydown", (ev) => {
+      if (ev.key === "Escape") fecharDoc();
+    });
   }
 
   /* ---------------------------------------------------------- init */
@@ -1383,6 +1451,9 @@
 
     // estado vindo da URL (link compartilhável)
     lerHash();
+
+    // leitor dos documentos (metodologia, dicionário, fontes, convergência)
+    ligarDocs();
 
     // ano global
     const anos = Array.from(new Set(INDS.flatMap((i) => i.anos))).sort((a, b) => b - a);

@@ -38,7 +38,9 @@ com a tela já aberta. O botão **Imprimir** gera a versão para PDF.
 ## 2. Pipeline de dados
 
 Os dados de origem ficam em `Base de Dados/` (38 planilhas) e `Dicionário/`
-(1 planilha). **Ordem obrigatória** (a saída de uma etapa é entrada da outra):
+(1 planilha). Dependências: `python -m pip install -r requirements.txt`
+(pandas, openpyxl e markdown). **Ordem obrigatória** (a saída de uma etapa é
+entrada da outra):
 
 ```bash
 python scripts/00_build_geo.py       # de-para município -> IBGE (código + RGInt)
@@ -48,7 +50,13 @@ python scripts/06_fetch_sinisa.py --baixar  # SINISA (URL muda todo ano) -> data
 python scripts/07_build_sinisa.py    # indicadores SINISA recalculados no município
 python scripts/03_build_bi.py        # monta o payload do navegador (data/bi/)
 python scripts/02_gen_schema.py      # gera DATA_SCHEMA.md (numeros calculados)
+python scripts/12_build_docs.py      # converte os .md em HTML para o leitor do painel
 ```
+
+> Os documentos (metodologia, dicionário, fontes, convergência) abrem **dentro do
+> painel**, num leitor próprio: o navegador não renderiza `.md`, então o passo 12
+> gera `data/bi/docs.js` com o HTML já formatado — funciona também em `file://`,
+> sem internet.
 
 **Fontes oficiais.** As 38 planilhas de `Base de Dados/` são *espelhos locais* de
 fontes oficiais — a fonte de verdade é o registro em [`data/fontes.csv`](data/fontes.csv):
@@ -163,7 +171,8 @@ python scripts/09_monitor_fontes.py
 
 # 2. regerar o payload
 python scripts/01_build_catalog.py && python scripts/04_build_populacao.py \
-  && python scripts/03_build_bi.py && python scripts/02_gen_schema.py
+  && python scripts/03_build_bi.py && python scripts/02_gen_schema.py \
+  && python scripts/12_build_docs.py
 
 # 3. conferir antes de publicar
 node scripts/06_test_core.js           # 56 asserções

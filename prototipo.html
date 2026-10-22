@@ -163,6 +163,24 @@
 <footer class="rodape" id="rodape"></footer>
 <div class="print-cabecalho" id="print-cabecalho"></div>
 
+<!-- leitor dos documentos (metodologia, dicionario, fontes, convergencia) -->
+<div class="doc-viewer" id="doc-viewer" hidden>
+  <div class="doc-fundo" data-fechar-doc></div>
+  <section class="doc-painel" role="dialog" aria-modal="true" aria-labelledby="doc-titulo">
+    <header class="doc-topo">
+      <div class="doc-ident">
+        <h2 class="doc-titulo" id="doc-titulo"></h2>
+        <p class="doc-sub" id="doc-sub"></p>
+      </div>
+      <div class="doc-acoes">
+        <a class="doc-baixar" id="doc-baixar" href="#" download>baixar .md</a>
+        <button type="button" class="doc-fechar" id="doc-fechar">Fechar</button>
+      </div>
+    </header>
+    <div class="doc-corpo md" id="doc-corpo" tabindex="-1"></div>
+  </section>
+</div>
+
 <div class="proto-flag">protótipo</div>
 
 <script src="core.js?v=e899e18ea4f9"></script>
@@ -183,6 +201,7 @@
 <script src="data/bi/populacao.js?v=e899e18ea4f9"></script>
 <script src="data/bi/fontes_status.js?v=e899e18ea4f9"></script>
 <script src="data/bi/monitoramento.js?v=e899e18ea4f9"></script>
+<script src="data/bi/docs.js?v=e899e18ea4f9"></script>
 <script src="prototipo.js"></script>
 </body>
 </html>

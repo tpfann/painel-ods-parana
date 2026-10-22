@@ -79,6 +79,10 @@ def main() -> None:
         p = os.path.join(ROOT, "data", arq)
         if os.path.exists(p):
             shutil.copy2(p, os.path.join(PUB, "data", arq))
+    # o .md de fontes aponta para o registro em CSV: precisa existir publicado
+    p = os.path.join(ROOT, "data", "fontes.csv")
+    if os.path.exists(p):
+        shutil.copy2(p, os.path.join(PUB, "data", "fontes.csv"))
 
     # a versao publica ignora revisao local (marca em todos os arquivos do payload)
     for nome in sorted(os.listdir(os.path.join(PUB, "data", "bi"))):
