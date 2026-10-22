@@ -310,6 +310,7 @@ def main() -> None:
 
     existentes = {l["arquivo"]: l for l in ler_registro()}
     linhas = []
+    ids_usados = set()
     for i, (arq, cs) in enumerate(arquivos.items(), 1):
         fonte = str(cs[0].get("fonte") or "")
         perfil = dict(perfil_para(arq, fonte))
@@ -340,6 +341,16 @@ def main() -> None:
             "observacao": antigo.get("observacao") or perfil.get("observacao", ""),
         }
         linhas.append(linha)
+        ids_usados.add(linha["id"])
+
+    # fontes externas (nao sao espelhos de um arquivo da pasta Base de Dados/):
+    # ficam no registro e sao preservadas entre execucoes
+    for l in existentes.values():
+        if l.get("arquivo") and l["arquivo"] in arquivos:
+            continue
+        if l.get("id") in ids_usados:
+            continue
+        linhas.append({c: l.get(c, "") for c in COLUNAS})
 
     gravar_registro(linhas)
     print("registro: %s (%d fontes)" % (os.path.relpath(REGISTRO, ROOT), len(linhas)))
@@ -353,18 +364,22 @@ def main() -> None:
         fid = linha["id"]
         caminho = os.path.join(BASE, linha["arquivo"])
         estado = {"status": "ativa", "detalhe": ""}
-        if os.path.exists(caminho):
+        if not linha["arquivo"]:
+            # fonte externa (sem espelho local): só o status de URL e o lembrete
+            estado["status"] = "externa"
+        elif os.path.exists(caminho):
             mtime = datetime.date.fromtimestamp(os.path.getmtime(caminho))
             sha = sha256_arquivo(caminho)
+            anterior = linha["sha256"]
             linha["ultima_aquisicao"] = mtime.strftime("%Y-%m-%d")
             linha["sha256"] = sha
-            if linha["sha256"] and linha["sha256"][:16] != sha[:16]:
+            if anterior and anterior[:16] != sha[:16]:
                 estado["status"] = "espelho_divergente"
-                estado["detalhe"] = "o arquivo local mudou desde a ultima aquisicao registrada"
+                estado["detalhe"] = ("o espelho local mudou desde a ultima aquisicao registrada "
+                                     "(%s -> %s)" % (anterior[:12], sha[:12]))
         else:
             estado["status"] = "arquivo_ausente"
             estado["detalhe"] = "espelho local nao encontrado em Base de Dados/"
-
         # lembrete: a fonte oficial ja deveria ter publicado a edicao deste ciclo?
         # o sinal e a data da EDICAO da fonte (o que o dicionario declara), nao a data
         # em que o espelho local foi baixado.
@@ -482,7 +497,7 @@ def main() -> None:
     print("status: %d ativas | %d pendentes | %d URL alterada | %d sem rede"
           % (len(linhas) - len(pendentes) - len(quebradas), len(pendentes), len(quebradas), len(sem_rede)))
     for l in pendentes:
-        print("  PENDENTE  %s  %s" % (l["id"], l["arquivo"][:66]))
+        print("  PENDENTE  %s  %s" % (l["id"], (l["arquivo"] or l["publicador"])[:66]))
     for l in quebradas:
         print("  URL QUEBRADA %s  %s" % (l["id"], l["url_direta"][:70]))
     print("relatorio: %s" % os.path.relpath(RELATORIO, ROOT))

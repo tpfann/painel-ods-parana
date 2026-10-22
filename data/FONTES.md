@@ -1,11 +1,11 @@
 # Status das fontes oficiais
 
-> Gerado por `scripts/05_fetch_fontes.py` em 2026-10-22 08:25. Não editar à mão: o registro editável é [`data/fontes.csv`](fontes.csv).
+> Gerado por `scripts/05_fetch_fontes.py` em 2026-10-22 08:35. Não editar à mão: o registro editável é [`data/fontes.csv`](fontes.csv).
 
 | Situação | Fontes |
 |---|---:|
 | Ativas | 30 |
-| **Pendentes (edição nova já deveria ter saído)** | **8** |
+| **Pendentes (edição nova já deveria ter saído)** | **9** |
 | **URL alterada** | **0** |
 | Sem rede (não verificadas) | 0 |
 
@@ -33,6 +33,7 @@
 | `f20` | pendente | a edicao 2026 ja deveria ter saido (mes 8) e a fonte esta em 2021-06-14 | https://download.inep.gov.br/ |
 | `f30` | pendente | a edicao 2026 ja deveria ter saido (mes 5) e a fonte esta em 2025-11-04 | https://portaldadosabertos.mte.gov.br/ |
 | `f34` | pendente | a edicao 2026 ja deveria ter saido (mes 2) e a fonte esta em 2024-11-12 | https://servicodados.ibge.gov.br/api/docs |
+| `f39` | pendente | a edicao 2026 ja deveria ter saido (mes 3) e a fonte esta em 2023-12-31 | https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa |
 
 ## Inventário
 
@@ -76,4 +77,5 @@
 | `f36` | O15 - Área de Remanescente Florestal como Prop | 15 | INPE (Programa Queimadas) / Fundação S | download | anual | 2026-10-21 |
 | `f37` | O16 - Proporção de Nascidos Vivos Registrados  | 16 | Ministério da Saúde / SINASC (registro | download | anual | 2026-10-21 |
 | `f38` | O16 - Taxa de Mortalidade por Homicídios.xlsx | 16 | Ministério da Saúde / SIM (óbitos) | download | anual | 2026-10-21 |
+| `f39` |  | 6 | Ministério das Cidades / SINISA (abast | download | anual | — |
 

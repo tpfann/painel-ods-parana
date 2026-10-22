@@ -48,6 +48,21 @@ python scripts/03_build_bi.py        # monta o payload do navegador (data/bi/)
 python scripts/02_gen_schema.py      # gera DATA_SCHEMA.md (numeros calculados)
 ```
 
+**Fontes oficiais.** As 38 planilhas de `Base de Dados/` são *espelhos locais* de
+fontes oficiais — a fonte de verdade é o registro em [`data/fontes.csv`](data/fontes.csv):
+
+```bash
+python scripts/05_fetch_fontes.py            # status de cada fonte + lembrete de edicao nova
+python scripts/05_fetch_fontes.py --estrito  # sai com codigo 1 se algo estiver pendente
+python scripts/06_fetch_sinisa.py --baixar   #SINISA: URL muda todo ano (padrao de descoberta)
+```
+
+Quando a fonte oficial publica uma edicao nova, o script **avisa qual é** (com a
+URL nova proposta) e o registro é atualizado em `data/fontes.csv` — o histórico
+das trocas fica no git. O painel mostra a proveniencia de cada indicador e, no
+rodape, quantas fontes aguardam nova edicao. Detalhes em
+[`data/FONTES.md`](data/FONTES.md).
+
 Regras do pipeline:
 
 - cada etapa tem **checagens de contrato** que falham alto (assert), não apenas avisos;

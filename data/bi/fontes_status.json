@@ -1,7 +1,7 @@
 {
- "gerado_em": "2026-10-22 08:25",
- "total": 38,
- "pendentes": 8,
+ "gerado_em": "2026-10-22 08:35",
+ "total": 39,
+ "pendentes": 9,
  "urls_quebradas": 0,
  "sem_rede": 0,
  "fontes": {
@@ -536,6 +536,20 @@
    "ultima_aquisicao": "2026-10-21",
    "sha256": "7e456e29af52d147",
    "url_landing": "https://opendatas.saude.gov.br/"
+  },
+  "f39": {
+   "id": "f39",
+   "arquivo": "",
+   "ods": 6,
+   "publicador": "Ministério das Cidades / SINISA (abastecimento de água e saneamento)",
+   "status": "pendente",
+   "detalhe": "a edicao 2026 ja deveria ter saido (mes 3) e a fonte esta em 2023-12-31",
+   "periodicidade": "anual",
+   "mes_esperado": "3",
+   "edicao_fonte": "2023-12-31",
+   "ultima_aquisicao": "",
+   "sha256": "1af66e823f534d5f",
+   "url_landing": "https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/saneamento/sinisa/resultados-sinisa"
   }
  }
 }
