@@ -147,9 +147,14 @@ desnutrição, mortes no trânsito e formação docente.
 
 ## 6. Publicar uma nova versão do painel
 
-O painel é um site estático: **a publicação é copiar a pasta do repositório para
-onde ele vai ficar** (servidor interno do gabinete, GitHub Pages ou pasta
-compartilhada). Procedimento:
+**Publicação automática (GitHub Pages).** O repositório já publica sozinho:
+cada `push` na `main` dispara `.github/workflows/pages.yml`, que monta a pasta
+`public/` (sem a aba de Revisão) e a publica.
+
+- **Painel publicado:** <https://tpfann.github.io/painel-ods-parana/>
+- **Repositório:** <https://github.com/tpfann/painel-ods-parana>
+
+Para publicar manualmente (ou de outra máquina):
 
 ```bash
 # 1. atualizar as fontes (o monitor avisa se houver edicao nova)
@@ -161,22 +166,18 @@ python scripts/01_build_catalog.py && python scripts/04_build_populacao.py \
   && python scripts/03_build_bi.py && python scripts/02_gen_schema.py
 
 # 3. conferir antes de publicar
-node scripts/06_test_core.js          # 55 asserções
+node scripts/06_test_core.js           # 56 asserções
 python scripts/08_test_convergencia.py  # comparação com o IDSC
+python scripts/10_publicar.py          # monta public/ (sem a aba de Revisão)
 # e abra teste-fumaca.html no navegador: 9 verificações, sem instalação
 
 # 4. versionar e publicar
-git add -A && git commit -m "base <data> (build <id>)"
+git add -A && git commit -m "base <data> (build <id>)" && git push
 ```
 
-**Canal recomendado:** GitHub Pages (histórico versionado, URL estável, sem
-servidor). Alternativa para uso interno: uma pasta em servidor do gabinete com
-os mesmos arquivos. O rodapé do painel mostra sempre o **build** e a data da
-base, então qualquer cópia em circulação é rastreável.
-
-**Quando uma fonte oficial publica edição nova:** o monitor detecta em até 6 h,
-escreve `data/NOVIDADE.md` e (com `data/monitoramento_auto.txt`) baixa, ingere e
-regera o payload. Revise, rode o teste de fumaça e publique.
+> A **versão pública não tem a aba Revisão** e ignora qualquer revisão salva
+> no navegador do visitante: todo mundo vê exatamente os mesmos números. A
+> revisão de polaridade é feita só na sua máquina, na versão de trabalho.
 
 ---
 
