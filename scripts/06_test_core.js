@@ -185,8 +185,13 @@ const fake = (vals, pol) => {
   ok("existem indicadores sem juízo de valor", semJuizo.length > 0);
   ok("sem juízo NÃO entra no ranking", semJuizo.every((i) => !C.elegivelRanking(i)));
   const semJuizoTotal = semJuizo.filter((i) => i.recorte === null || i.recorte === "Total");
-  ok("sem juízo (Total) ENTRA no mapa", semJuizoTotal.length > 0 && semJuizoTotal.every((i) => C.elegivelMapa(i)));
-  ok("sem juízo com recorte fica fora do mapa", semJuizo.filter((i) => i.recorte !== "Total").every((i) => !C.elegivelMapa(i)));
+  const semJuizoMedida = semJuizo.filter((i) => (i.recorte === null || i.recorte === "Total") &&
+    (i.tipo === "percentual" || i.tipo === "taxa"));
+  ok("sem juízo (Total, medida comparável) ENTRA no mapa",
+    semJuizoMedida.length > 0 && semJuizoMedida.every((i) => C.elegivelMapa(i)));
+  ok("sem juízo com recorte (fora do Total) fica fora do mapa",
+    semJuizo.filter((i) => i.recorte !== null && i.recorte !== "Total").every((i) => !C.elegivelMapa(i)));
+  ok("sem juízo (volume ou estrutural) não entra no ranking", semJuizo.every((i) => !C.elegivelRanking(i)));
   const contagens = INDS.filter((i) => i.tipo === "contagem");
   ok("contagens não entram no mapa", contagens.every((i) => !C.elegivelMapa(i)));
   ok("contagens não entram no ranking", contagens.every((i) => !C.elegivelRanking(i)));

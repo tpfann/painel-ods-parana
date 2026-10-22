@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Painel ODS · teste de fumaça</title>
+<link rel="stylesheet" href="prototipo.css">
+<style>
+  body{background:var(--bg);padding:32px}
+  .fume{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 26px;max-width:900px;margin:0 auto}
+  h1{font-size:19px;margin-bottom:4px}
+  p.sub{color:var(--muted);font-size:12.5px;margin-bottom:16px}
+  li{list-style:none;padding:5px 0;border-bottom:1px solid var(--line-2);font-size:13px;display:flex;gap:10px;align-items:baseline}
+  li b{width:62px;font-weight:600}
+  .ok{color:var(--good)} .falha{color:var(--bad)} .aviso{color:var(--warn)}
+  .resumo{font-size:15px;font-weight:600;margin:14px 0 6px}
+  a.btn{display:inline-block;margin-top:16px;background:var(--brand);color:#fff;padding:9px 15px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:600}
+  code{background:var(--line-2);padding:1px 5px;border-radius:4px;font-size:12px}
+</style>
+</head>
+<body>
+<div class="fume">
+  <h1>Teste de fumaça — Painel ODS</h1>
+  <p class="sub">Verifica o payload e os cálculos antes de publicar. Abra este arquivo no navegador; não precisa de servidor nem de internet.</p>
+  <ul id="saida"></ul>
+  <div class="resumo" id="resumo">…</div>
+  <a class="btn" href="prototipo.html">Abrir o painel</a>
+</div>
+
+<script src="core.js"></script>
+<script src="data/bi/indice.js"></script>
+<script src="data/bi/val_ods1.js"></script>
+<script src="data/bi/val_ods2.js"></script>
+<script src="data/bi/val_ods3.js"></script>
+<script src="data/bi/val_ods4.js"></script>
+<script src="data/bi/val_ods5.js"></script>
+<script src="data/bi/val_ods6.js"></script>
+<script src="data/bi/val_ods7.js"></script>
+<script src="data/bi/val_ods8.js"></script>
+<script src="data/bi/val_ods9.js"></script>
+<script src="data/bi/val_ods13.js"></script>
+<script src="data/bi/val_ods15.js"></script>
+<script src="data/bi/val_ods16.js"></script>
+<script src="data/bi/mapa.js"></script>
+<script src="data/bi/populacao.js"></script>
+<script>
+(function () {
+  "use strict";
+  const EN = window.BI || {};
+  const saida = document.getElementById("saida");
+  let ok = 0, falha = 0, aviso = 0;
+
+  function linha(estado, nome, detalhe) {
+    const li = document.createElement("li");
+    li.innerHTML = "<b class='" + estado + "'>" +
+      (estado === "ok" ? "OK" : estado === "falha" ? "FALHA" : "AVISO") + "</b>" +
+      "<span>" + nome + (detalhe ? " — " + detalhe : "") + "</span>";
+    saida.appendChild(li);
+    if (estado === "ok") ok++; else if (estado === "falha") falha++; else aviso++;
+  }
+
+  if (!EN.indice) {
+    linha("falha", "payload não carregado", "falta data/bi/indice.js");
+  } else {
+    const INDS = EN.indice.indicadores, LOC = EN.indice.localidades, ODS = EN.indice.ods;
+    const MUN = LOC.map((l, i) => (l.t === "municipio" ? i : -1)).filter((i) => i >= 0);
+    const C = window.CORE.criar({ INDS: INDS, LOC: LOC, MUN: MUN, ODS: ODS, EN: EN, POP: EN.pop || null });
+
+    // 1) manifesto
+    const builds = Object.values(EN.builds || {}).map((b) => b && b.id);
+    const unicos = [...new Set(builds)];
+    linha(unicos.length === 1 ? "ok" : "falha", "manifesto do payload",
+      unicos.length === 1 ? "build " + unicos[0] : "gerações diferentes: " + unicos.join(" x "));
+
+    // 2) cobertura de valores
+    let semValores = 0, tamanhoErrado = 0, comNaN = 0;
+    INDS.forEach((i) => {
+      const arr = EN.valores[i.id];
+      if (!arr) { semValores++; return; }
+      if (arr.length !== LOC.length * i.anos.length) tamanhoErrado++;
+      for (let k = 0; k < arr.length; k++) {
+        const v = arr[k];
+        if (v === null || v === undefined) continue;
+        if (typeof v !== "number" || !isFinite(v)) { comNaN++; break; }
+      }
+    });
+    linha(semValores === 0 ? "ok" : "falha", "todos os indicadores têm valores",
+      semValores ? semValores + " sem array" : INDS.length + " indicadores");
+    linha(tamanhoErrado === 0 ? "ok" : "falha", "tamanho dos arrays",
+      tamanhoErrado ? tamanhoErrado + " com tamanho errado" : "localidades × anos");
+    linha(comNaN === 0 ? "ok" : "falha", "nenhum valor inválido (NaN/Infinito)",
+      comNaN ? comNaN + " indicadores" : "ok");
+
+    // 3) chaves e proveniência
+    const chaves = new Set(INDS.map((i) => i.chave));
+    linha(chaves.size === INDS.length ? "ok" : "falha", "chaves de negócio únicas",
+      chaves.size + " de " + INDS.length);
+    const semFonte = INDS.filter((i) => !i.fonte_publicador).length;
+    linha(semFonte === 0 ? "ok" : "aviso", "proveniência declarada",
+      semFonte ? semFonte + " sem publicador" : "todos com publicador e URL");
+
+    // 4) cálculos das três visões
+    const li = LOC.findIndex((l) => l.n === "Guarapuava");
+    let naoDeterministico = 0;
+    const eleg = INDS.filter((i) => C.elegivelRanking(i) && !i.espelho_de);
+    eleg.forEach((ind) => {
+      const a = ind.anos[ind.anos.length - 1];
+      const p = C.pctMap(ind, a)[li];
+      const rk = C.rankOf(ind, li, a);
+      if ((p !== null && !isFinite(p)) || (rk && !isFinite(rk.pos))) naoDeterministico++;
+    });
+    linha(naoDeterministico === 0 ? "ok" : "falha", "percentis e posições calculados",
+      naoDeterministico ? naoDeterministico + " com valor inválido" : eleg.length + " indicadores elegíveis");
+
+    // 5) mapa
+    const caminhos = (EN.mapa && EN.mapa.p) || [];
+    const semCod = caminhos.filter((p) => !p.c).length;
+    linha(caminhos.length === 399 && semCod === 0 ? "ok" : "aviso", "malha dos municípios",
+      caminhos.length + " municípios" + (semCod ? ", " + semCod + " sem código" : ""));
+
+    // 6) população
+    if (EN.pop) {
+      const j = EN.pop.anos.indexOf(2022);
+      const soma = MUN.reduce((s, i) => s + (EN.pop.valores[i * EN.pop.anos.length + j] || 0), 0);
+      const okPop = Math.abs(soma - 11444380) < 1;
+      linha(okPop ? "ok" : "falha", "população (Censo 2022 confere com o IBGE)",
+        soma.toLocaleString("pt-BR") + " (esperado 11.444.380)");
+    } else {
+      linha("aviso", "população ausente", "sem data/bi/populacao.js");
+    }
+  }
+
+  const r = document.getElementById("resumo");
+  r.textContent = (falha ? "✗ " + falha + " falha(s)" : "✓ tudo certo") + " · " + ok + " ok · " + aviso + " aviso(s)";
+  r.className = "resumo " + (falha ? "falha" : "ok");
+})();
+</script>
+</body>
+</html>

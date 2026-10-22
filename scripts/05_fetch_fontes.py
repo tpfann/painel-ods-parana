@@ -294,6 +294,8 @@ def main() -> None:
                     help="cria/atualiza o registro sem sobrescrever as colunas curadas")
     ap.add_argument("--recurar", action="store_true",
                     help="reaplica os perfis (publicador, acesso, URL, periodicidade) e zera o resto")
+    ap.add_argument("--sim", action="store_true",
+                    help="confirmacao exigida pelo --recurar (sobrepoe URLs curadas a mao)")
     ap.add_argument("--estrito", action="store_true",
                     help="sai com codigo 1 se houver fonte pendente ou URL quebrada")
     ap.add_argument("--sem-rede", action="store_true",
@@ -309,6 +311,14 @@ def main() -> None:
         arquivos.setdefault(c["arquivo"], []).append(c)
 
     existentes = {l["arquivo"]: l for l in ler_registro()}
+    if args.recurar and not args.sim:
+        # o --recurar sobrescreve URLs e periodicidades curadas a mao: exige confirmacao
+        curadas = [l for l in existentes.values() if l.get("url_direta")]
+        print("--recurar vai sobrescrever %d fonte(s) com URL/periodicidade curada a mao." % len(curadas))
+        for l in curadas[:10]:
+            print("   %s  %s" % (l.get("id"), (l.get("url_direta") or "")[:80]))
+        print("\nPara confirmar, rode de novo com --sim (ou edite data/fontes.csv a mao).")
+        return
     linhas = []
     ids_usados = set()
     for i, (arq, cs) in enumerate(arquivos.items(), 1):

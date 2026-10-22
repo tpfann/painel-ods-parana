@@ -167,19 +167,83 @@ def parse(nome: str, grupo_tema: str) -> dict:
     }
 
 
-def polaridade(nome: str):
-    """(+1 maior é melhor | -1 menor é melhor | 0 sem juízo de valor, motivo)."""
-    if "Casos de AIDS entre Mulheres" in nome:
-        return 0, "indicador de composição/disparidade: não tem juízo de valor"
-    if "Cobertura Vacinal" in nome:
-        return 1, "palavra-chave 'Cobertura Vacinal' (mais cobertura é melhor)"
-    baixos = ("Mortalidade", "Óbitos", "Mortes", "Desnutrid", "Baixo Peso",
-              "Homicíd", "Hepatite", "Tuberculose", "Incidência de AIDS",
-              "Mães Adolescentes", "Desastres")
-    for k in baixos:
-        if k in nome:
-            return -1, "palavra-chave '%s' (menos é melhor)" % k
-    return 1, "padrão: mais é melhor"
+# --- Critérios de polaridade (DECISOES.md §2.7) -------------------------------
+#   -1  menos é melhor (mortalidade, doença, risco)
+#    0  sem juízo de valor (volume absoluto, indicador estrutural/descritivo,
+#       diferença entre grupos: não medem o desempenho do município)
+#   +1  mais é melhor (cobertura, acesso, renda, registro, equidade)
+PALAVRAS_ADVERSAS = (
+    "mortalidade", "obito", "óbitos", "mortes", "casos de", "incidencia", "incidência",
+    "desnutri", "baixo peso", "homicid", "suicid", "desaparec", "desastre",
+    "internac", "uti", "tuberculose", "hepatite", "aids", "hiv",
+    "mães adolescentes", "insuficiente",
+)
+
+# exceções curadas: indicadores em que o critério geral pede decisão humana
+POLARIDADE_CURADA = {
+    "Proporção de Cadeiras Ocupadas por Mulheres nas Câmaras de Vereadores":
+        (1, "indicador de equidade de gênero: mais representação é melhor"),
+    "Proporção de Mulheres em Posições Gerenciais - RAIS":
+        (1, "indicador de equidade de gênero: mais representação é melhor"),
+    "Proporção dos Casos de AIDS entre Mulheres":
+        (0, "indicador de composição/disparidade: não mede o desempenho do município"),
+    "Percentual do Valor Adicionado Bruto na Indústria sobre o PIB":
+        (0, "indicador estrutural (composição da economia), sem direção de valor "
+            "— como no ODS 9.2.1 das ONU"),
+    "Emprego no Setor de Indústria como Percentual do Emprego Total":
+        (0, "indicador estrutural (participação setorial do emprego), sem direção de valor"),
+    "Proporção de Empregos (RAIS) nas Atividades Características do Turismo":
+        (0, "indicador estrutural (participação setorial), sem direção de valor"),
+    "Valor Adicionado Fiscal nas Atividades Características do Turismo":
+        (0, "indicador estrutural (valor adicionado setorial), sem direção de valor"),
+    "Área de Remanescente Florestal como Proporção da Área Territorial":
+        (1, "proxy ambiental: mais cobertura florestal é melhor"),
+    "Proporção de Nascidos Vivos Registrados por uma Autoridade Civil":
+        (1, "mais registro significa mais cobertura do sistema civil"),
+    "Número de Agências Bancárias e Postos de Atendimento Eletrônico":
+        (1, "proxy de acesso financeiro: mais agência por 100 mil adultos é melhor"),
+    "Proporção de Pessoas de 4 a 5 anos Matriculados na Pré-Escola":
+        (1, "cobertura de matrícula: mais matriculado é melhor"),
+    "Proporção do Total das Despesas Públicas Municipais com Educação e Seguridade Social":
+        (1, "esforço municipal em educação: mais é melhor"),
+    "Taxa de Incidência de AIDS":
+        (-1, "incidência de doença: menos é melhor"),
+    "Taxa de Incidência de Hepatite B":
+        (-1, "incidência de doença: menos é melhor"),
+    "Taxa de Incidência de Tuberculose":
+        (-1, "incidência de doença: menos é melhor"),
+}
+
+
+def polaridade(nome: str, tipo: str = "", grupo: str = ""):
+    """(+1 maior é melhor | -1 menor é melhor | 0 sem juízo de valor, motivo).
+
+    A tabela curada é casada pelo GRUPO (nome do tema no dicionário), que é estável
+    entre versões da base; a medida vem da coluna de origem.
+    """
+    medida = nome.lower()
+    alvo = medida + " | " + (grupo or "").lower()
+    for k, v in POLARIDADE_CURADA.items():
+        if k.lower() in alvo:
+            return v
+    if any(k in medida for k in ("cobertura vacinal", "vacinal")):
+        return 1, "cobertura vacinal: mais cobertura é melhor"
+    # 1) volume absoluto: só tem juízo se o volume for um evento adverso
+    if tipo == "contagem":
+        if any(k in medida for k in PALAVRAS_ADVERSAS):
+            return -1, "volume de eventos adversos: menos é melhor"
+        return 0, "volume absoluto (não mede qualidade): sem juízo de valor"
+    # 2) eventos adversos e risco
+    if any(k in medida for k in PALAVRAS_ADVERSAS):
+        return -1, "mortalidade, doença ou risco: menos é melhor"
+    # 3) indicadores estruturais/descritivos (composição do econômico, diferenças)
+    if any(k in medida for k in ("valor adicionado", "participa", "composi",
+                                "percentual do valor", "diferença", "diferenca",
+                                "razão", "razao", "coeficiente", "favela",
+                                "comunidades urbanas")):
+        return 0, "indicador estrutural/descritivo: sem juízo de valor"
+    # 4) demais: cobertura, acesso, resultado positivo
+    return 1, "cobertura, acesso ou resultado positivo: mais é melhor"
 
 
 # rótulos curtos por tema (chave = norm(grupo)); usados em cartões, listas e mapas
@@ -257,6 +321,21 @@ if os.path.exists(caminho_pop):
 # registro de fontes oficiais (proveniencia de cada espelho local)
 FONTES = ler_fontes()
 
+# --- Revisão de polaridade (exportada pela aba Revisão do painel) -------------
+# O JSON é a decisão do revisor e TEM precedência sobre o critério automático.
+# Chave = nome da coluna de origem (estável). Chave desconhecida = erro alto:
+# nada de aplicar parte da revisão e publicar em silêncio.
+CAMINHO_POLARIDADE = os.path.join(ROOT, "data", "polaridade.json")
+REVISADO = {}
+if os.path.exists(CAMINHO_POLARIDADE):
+    with open(CAMINHO_POLARIDADE, encoding="utf-8") as fh:
+        bruto = json.load(fh)
+    if "polaridade" in bruto and isinstance(bruto["polaridade"], dict):
+        REVISADO = {str(k): int(v) for k, v in bruto["polaridade"].items()}
+    else:
+        REVISADO = {str(k): int(v) for k, v in bruto.items()}
+    print("  revisão de polaridade carregada: %d decisão(ões)" % len(REVISADO))
+
 # indicadores de fontes externas ja processadas (ex.: SINISA)
 caminho_sinisa = os.path.join(OUT, "sinisa.js")
 sinisa_bytes = b""
@@ -309,7 +388,12 @@ for c in catalogo:
         raise ValueError("chave de negócio duplicada: %r (já usada por %s)"
                          % (chave, chaves_vistas[chave]))
     chaves_vistas[chave] = c["indicador"]
-    pol, pol_motivo = polaridade(c["indicador"])
+    pol, pol_motivo = polaridade(p["medida"], p["tipo"], p["grupo"])
+    if c["indicador"] in REVISADO:
+        novo = REVISADO[c["indicador"]]
+        if novo != pol:
+            pol_motivo = "revisado por_curador"
+        pol = novo
     fonte = FONTES.get(c["arquivo"], {})
     meta = {
         "id": id_curto(chave),
@@ -538,6 +622,12 @@ print("proporcionais (contagens -> por 100 mil hab.):",
 print("sem recorte:", sum(1 for i in indicadores if not i["recorte"]))
 
 # checagens de contrato (falham alto, nao apenas avisam)
+chaves_desconhecidas = [k for k in REVISADO if k not in {c["indicador"] for c in cat}]
+if chaves_desconhecidas:
+    raise SystemExit(
+        "polaridade.json tem %d chave(s) que nao existem na base:\n  - %s\n"
+        "A base mudou desde a revisao: reexporte a revisao na aba Revisao."
+        % (len(chaves_desconhecidas), "\n  - ".join(chaves_desconhecidas[:5])))
 n_esperados = (len(catalogo) - 2 + (len(SINISA["ind"]) if SINISA else 0)
                 + sum(len(v) for v in ESPELHOS.values()))
 assert len(indicadores) == n_esperados, (

@@ -92,13 +92,46 @@ informa **quantos** e **por quê** ficaram de fora.
   com `*` e explica a fórmula em “Sobre o indicador”.
 - Quando o denominador vem de um ano diferente do indicador (interpolação), a tela avisa.
 
+### 2.7 Critérios de polaridade (decididos em 21/10/2026)
+
+A polaridade deixou de ser adivinhada por palavra-chave e passou a ter **critério
+explícito**, aplicado pelo gerador e registrado por indicador (`pol_motivo`):
+
+| Caso | Polaridade | Critério |
+|---|---|---|
+| Mortalidade, mortes, incidência, doença, risco, desnutrição, baixo peso | **−1** | menos é melhor |
+| Volume absoluto (unidades atendidas, consumidores, formalism de empregos) | **0** | volume não mede qualidade |
+| Indicador estrutural/descritivo (participação setorial, % do VAB, VAF setorial) | **0** | não mede o desempenho do município (como no ODS 9.2.1 das ONU) |
+| Cobertura, acesso, renda, registro civil, matrícula, proxy ambiental | **+1** | mais é melhor |
+| Equidade de gênero (cadeiras na câmara, cargos gerenciais) | **+1** | mais representação é melhor |
+| Diferenças/razões entre grupos | **0** | mede um intervalo entre grupos, não o município |
+
+Resultado: **94 indicadores "menos é melhor", 90 "mais é melhor", 14 sem juízo de
+valor**. Indicadores sem juízo **continuam no mapa** (legenda "menor/maior", sem
+verde/vermelho), mas ficam **fora do ranking, das sínteses e dos destaques** — e
+o cartão do ODS mostra o selo neutro.
+
+**A revisão humana tem precedência:** se existir `data/polaridade.json` (exportado
+pela aba Revisão), o gerador aplica as decisões do revisor **indexadas pela chave
+de negócio** e **falha alto** se alguma chave não existir na base — não é
+possível aplicar parte da revisão e publicar em silêncio.
+
+### 2.8 Espelhos (mesma série em dois ODS)
+
+Indicadores que pertencem legitimamente a dois ODS (ex.: mortes no trânsito, que é
+do ODS 3 "Saúde" e do ODS 11 "Cidades Sustentáveis") entram como **espelho**:
+mesmos valores (alias em JS, sem duplicar dado), id próprio e `espelho_de`
+apontando a origem. A **síntese conta a série uma vez só** e o mapa não a repete;
+o cartão do ODS informa que é a mesma série.
+
 ---
 
 ## 3. Pendências em aberto
 
 | # | Pendência | Situação |
 |---|---|---|
-| 1 | Revisão de polaridade dos 194 indicadores | Ferramenta pronta (aba Revisão). Falta o usuário percorrer e exportar `polaridade.json`; o JSON passa a ser o padrão de `pol` no gerador |
+| 1 | Revisão de polaridade dos 194 indicadores | **Critérios definidos e aplicados pelo gerador** (21/10/2026, §2.7). A aba Revisão permite sobrescrever por indicador; o JSON exportado passa a ser o padrão do gerador, com validação ruidosa. A revisão do curador ainda é bem-vinda: o que vier de `data/polaridade.json` tem precedência |
+| 2 | Revisão de polaridade dos 194 indicadores | Ferramenta pronta (aba Revisão). Falta o usuário percorrer e exportar `polaridade.json`; o JSON passa a ser o padrão de `pol` no gerador |
 | 2 | Confirmar se indicadores com dado de 2016 (Proficiência 3º ano) devem seguir nas posições | Decidido em 21/10/2026: seguem, com selo âmbar e aviso de série desatualizada |
 | 3 | Cobertura de RGInt em 48 indicadores | Depende de nova fonte com agregado regional; não é contornável no painel |
 

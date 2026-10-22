@@ -284,12 +284,17 @@ main{max-width:1440px;margin:0 auto;padding:40px 24px 60px}
 :focus-visible{outline:2px solid var(--brand-2);outline-offset:2px;border-radius:6px}
 
 /* ---------- impressão ---------- */
+.print-cabecalho{display:none}
 @media print{
   .topbar,.proto-flag,#btn-imprimir,.mapa-tip,.rev-ctrls{display:none !important}
   body{background:#fff}
   .card{box-shadow:none;border:1px solid #ddd;break-inside:avoid}
   main{padding:0}
   .rodape{border-top:1px solid #ccc}
+  .print-cabecalho{display:block;border-bottom:1px solid #ccc;padding-bottom:8px;margin-bottom:12px}
+  .print-cabecalho b{font-size:15px}
+  .print-cabecalho span{display:block;font-size:10.5px;color:#5A6678;margin-top:2px}
+  a[href]::after{content:""}
 }
 
 /* ---------- explorador ---------- */

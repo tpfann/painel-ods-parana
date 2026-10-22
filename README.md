@@ -145,7 +145,42 @@ desnutrição, mortes no trânsito e formação docente.
 
 ---
 
-## 6. Pendência aberta
+## 6. Publicar uma nova versão do painel
+
+O painel é um site estático: **a publicação é copiar a pasta do repositório para
+onde ele vai ficar** (servidor interno do gabinete, GitHub Pages ou pasta
+compartilhada). Procedimento:
+
+```bash
+# 1. atualizar as fontes (o monitor avisa se houver edicao nova)
+python scripts/05_fetch_fontes.py
+python scripts/09_monitor_fontes.py
+
+# 2. regerar o payload
+python scripts/01_build_catalog.py && python scripts/04_build_populacao.py \
+  && python scripts/03_build_bi.py && python scripts/02_gen_schema.py
+
+# 3. conferir antes de publicar
+node scripts/06_test_core.js          # 55 asserções
+python scripts/08_test_convergencia.py  # comparação com o IDSC
+# e abra teste-fumaca.html no navegador: 9 verificações, sem instalação
+
+# 4. versionar e publicar
+git add -A && git commit -m "base <data> (build <id>)"
+```
+
+**Canal recomendado:** GitHub Pages (histórico versionado, URL estável, sem
+servidor). Alternativa para uso interno: uma pasta em servidor do gabinete com
+os mesmos arquivos. O rodapé do painel mostra sempre o **build** e a data da
+base, então qualquer cópia em circulação é rastreável.
+
+**Quando uma fonte oficial publica edição nova:** o monitor detecta em até 6 h,
+escreve `data/NOVIDADE.md` e (com `data/monitoramento_auto.txt`) baixa, ingere e
+regera o payload. Revise, rode o teste de fumaça e publique.
+
+---
+
+## 7. Pendência em aberto de decisão do cliente
 
 A **revisão de polaridade dos 194 indicadores** (aba Revisão): marcar um a um
 “menor é melhor / sem juízo / maior é melhor” e exportar o JSON. O arquivo sai

@@ -688,7 +688,7 @@
               ? `<span class="badge mid">sem dado em ${ano}</span>`
               : rk && rk.empateFrac > 0.3
               ? `<span class="badge mid" title="Muitos municípios com o mesmo valor: ${rk.igual} de ${rk.total}">empate: ${rk.igual} municípios</span>${seloAno(ano)}`
-              : `<span class="badge ${p >= 60 ? "good" : p < 40 ? "bad" : "mid"}">${rk ? rk.pos + "º de " + rk.total : ""}</span>
+              : `<span class="badge ${ind.pol === 0 ? "mid" : p >= 60 ? "good" : p < 40 ? "bad" : "mid"}">${rk ? rk.pos + "º de " + rk.total : ""}</span>
                  ${seloAno(ano)}`
           }
         </div>`;
@@ -1327,6 +1327,15 @@
     const rodape = $("#rodape");
     if (!rodape) return;
     const b = EN.build || {};
+    // cabecalho de impressao (folha de rosto do PDF)
+    const cab = $("#print-cabecalho");
+    if (cab) {
+      const loc = LOC[state.local];
+      cab.innerHTML = `<b>Painel ODS · Paraná</b> — ${esc(loc ? loc.n : "")}` +
+        `<span>Posição frente aos ${MUN.length} municípios do Paraná · ` +
+        `dados até ${ANO_REF} · build ${esc(b.id || "—")} · gerado em ${esc(b.gerado_em || "—")} · ` +
+        `impresso em ${new Date().toLocaleDateString("pt-BR")}</span>`;
+    }
     const pop = POP && POP.info ? POP.info : null;
     const fs = EN.fontes || null;
     const mon = EN.monitoramento || null;
