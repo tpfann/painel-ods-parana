@@ -13,6 +13,7 @@ scratch/
 data/cache/
 data/monitoramento_auto.txt
 data/NOVIDADE.md
+public/
 
 # ---- python ----
 __pycache__/

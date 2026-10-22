@@ -1368,8 +1368,18 @@
     // integridade do payload: sem isso, não se renderiza nada
     if (!checarIntegridade()) return;
 
-    // polaridade revisada pelo usuário (localStorage) sobre a proposta automática
-    aplicarPolaridade();
+    // Versão pública (GitHub Pages): a revisão de polaridade é privilégio do
+    // curador e não existe no painel publicado — e qualquer ajuste salvo
+    // localmente por um visitante é ignorado, para todos verem os mesmos números.
+    const ehPublico = EN.build && EN.build.revisao === false;
+    if (ehPublico) {
+      $$(".tabs button").forEach((b) => { if (b.dataset.view === "revisao") b.remove(); });
+      $$("#view-revisao").forEach((s) => s.remove());
+      try { window.localStorage.removeItem(POL_KEY); } catch (e) { /* sem storage */ }
+    } else {
+      // polaridade revisada pelo usuário (localStorage) sobre a proposta do gerador
+      aplicarPolaridade();
+    }
 
     // estado vindo da URL (link compartilhável)
     lerHash();

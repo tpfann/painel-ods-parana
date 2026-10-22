@@ -24,6 +24,7 @@ import json
 import math
 import os
 import re
+import sys
 import unicodedata
 from collections import OrderedDict
 
@@ -349,6 +350,10 @@ if os.path.exists(caminho_sinisa):
 # REGRAS_VERSION entra no hash: se as regras de derivacao mudarem (polaridade,
 # proporcionalidade, rotulos), o build muda e o app recusa payload antigo.
 REGRAS_VERSION = "2026-10-21"
+# Versao PUBLICA: o painel vai para fora (GitHub Pages) e a aba de Revisao
+# nao pode existir — revisar polaridade e privilegio do curador.
+# Uso: python scripts/03_build_bi.py --publico
+PUBLICO = "--publico" in sys.argv
 BUILD_ID = sha(
     REGRAS_VERSION.encode("utf-8"),
     json.dumps(catalogo, ensure_ascii=False, sort_keys=True).encode("utf-8"),
@@ -362,6 +367,8 @@ BUILD = {
     "regras": REGRAS_VERSION,
     "fonte_catalogo": "scripts/01_build_catalog.py",
     "n_indicadores_catalogo": len(catalogo),
+    "publico": PUBLICO,
+    "revisao": not PUBLICO,
 }
 
 # ---------------------------------------------------------------- localidades
@@ -609,9 +616,16 @@ with open(caminho_html, encoding="utf-8") as fh:
     html = fh.read()
 html = re.sub(r'(src="(?:core\.js|data/bi/[a-z0-9_]+\.js))(\?v=[0-9a-f]+)?"',
               r'\1?v=' + BUILD_ID + '"', html)
+if PUBLICO:
+    # versao publica: a aba de Revisao nao existe (so o curador revisa, na sua maquina)
+    html = re.sub(r'\s*<button data-view="revisao"[^>]*>Revisão</button>', "", html)
+    html = re.sub(r'\s*<!-- =+ REVISÃO =+ -->\s*<section class="view" id="view-revisao">[\s\S]*?</section>',
+                  "", html)
+    html = re.sub(r'\s*<section class="view" id="view-revisao">[\s\S]*?</section>', "", html)
 with open(caminho_html, "w", encoding="utf-8") as fh:
     fh.write(html)
-print(f"  prototipo.html    sincronizado com o build {BUILD_ID}")
+print(f"  prototipo.html    sincronizado com o build {BUILD_ID}"
+      + (" (versão pública: aba de revisão removida)" if PUBLICO else ""))
 
 # ---------------------------------------------------------------- resumo e checagens
 print(f"\nlocalidades={N} indicadores={len(indicadores)} ods={len(ods_meta)} build={BUILD_ID}")
