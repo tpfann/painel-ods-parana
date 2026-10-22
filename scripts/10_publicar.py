@@ -59,6 +59,9 @@ def main() -> None:
     html = remover_revisao(html)
     with open(os.path.join(PUB, "prototipo.html"), "w", encoding="utf-8", newline="\n") as fh:
         fh.write(html)
+    # raiz do site = o painel: o link divulgado fica curto (.../painel-ods-parana/)
+    with open(os.path.join(PUB, "index.html"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write(html)
 
     for arq in ("prototipo.css", "core.js", "prototipo.js"):
         shutil.copy2(os.path.join(ROOT, arq), os.path.join(PUB, arq))
@@ -95,6 +98,10 @@ def main() -> None:
         fh.write("<!doctype html><meta charset='utf-8'><title>Painel ODS</title>"
                  "<p style='font-family:sans-serif;padding:32px'>Página não encontrada — "
                  "<a href='/'>voltar ao painel</a>.</p>\n")
+
+    # GitHub Pages: desliga o Jekyll (serve os arquivos como estao)
+    with open(os.path.join(PUB, ".nojekyll"), "w", encoding="utf-8", newline="\n") as fh:
+        fh.write("")
 
     total = sum(os.path.getsize(os.path.join(r, f))
                 for r, _, fs in os.walk(PUB) for f in fs)

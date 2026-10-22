@@ -183,26 +183,30 @@ git add -A && git commit -m "base <data> (build <id>)" && git push
 
 ## 7. Distribuir o painel para outras pessoas
 
-Quatro caminhos, do mais simples ao mais controlado:
+**Canal em uso: o link.** Basta enviar o endereço — a raiz do site já abre o
+painel (não precisa digitar `/prototipo.html`):
 
-| Canal | Como | Para quem |
+> **<https://tpfann.github.io/painel-ods-parana/>**
+
+Funciona em qualquer navegador, celular ou computador, sem instalação e sem
+login. Alternativas, se um dia forem necessárias:
+
+| Canal | Como | Quando usar |
 |---|---|---|
-| **1. Link (GitHub Pages)** | <https://tpfann.github.io/painel-ods-parana/> | o gabinete, qualquer dispositivo, sem instalação |
-| **2. Arquivo offline (ZIP)** | `python scripts/11_publicar_github.py` gera `public/`; comprimir a pasta e enviar | máquinas sem internet (auditório, gabinete com rede restrita) — abre por duplo clique, funciona em `file://` |
-| **3. Servidor interno** | copiar `public/` para o servidor web do gabinete | link interno, sem depender de terceiros |
-| **4. PDF por visualização** | botão **Imprimir** no painel (cabeçalho com município, build e data) | atas de reunião, documento de trabalho |
+| **Link (GitHub Pages)** — *em uso* | o endereço acima | o gabinete, qualquer dispositivo |
+| **Arquivo offline (ZIP)** | `python scripts/11_publicar_github.py --so-pasta` monta `public/`; comprimir e enviar (**~1,7 MB**) | máquina sem internet — abre por duplo clique, funciona em `file://` |
+| **Servidor interno** | copiar `public/` para o servidor web do gabinete | se não quiser depender de serviço externo |
+| **PDF por visualização** | botão **Imprimir** (cabeçalho com município, build e data) | atas de reunião, documento de trabalho |
 
 Em qualquer canal, a **versão publicada não tem a aba Revisão** e ignora revisões
 salvas no navegador: todo mundo vê os mesmos números. O rodapé mostra sempre o
 **build** e a data da base, então dá para saber de qual versão se trata uma
 captura ou um PDF que circule.
 
-Para gerar o pacote offline:
-
-```bash
-python scripts/11_publicar_github.py --so-pasta   # monta public/
-# comprimir: no Windows, compactar a pasta public/ num .zip
-```
+Detalhes técnicos da publicação: `scripts/10_publicar.py` monta `public/` com
+`index.html` (a raiz abre o painel) e `.nojekyll` (o Pages serve os arquivos como
+estão, sem processar com Jekyll); `scripts/11_publicar_github.py` publica essa
+pasta na branch `gh-pages`.
 
 ---
 

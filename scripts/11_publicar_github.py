@@ -49,7 +49,7 @@ def main() -> None:
     # branch orfa: so a versao publica, com um unico commit por publicacao
     tmp = os.path.join(ROOT, ".publish_tmp")
     if os.path.isdir(tmp):
-        shutil.rmtree(tmp)
+        shutil.rmtree(tmp, ignore_errors=True)
     shutil.copytree(PUB, tmp)
     for junk in (".DS_Store",):
         for r, _, fs in os.walk(tmp):
@@ -78,7 +78,7 @@ def main() -> None:
     else:
         print("origem do Pages ajustada para a branch", BRANCH)
 
-    print("publicado: https://%s.github.io/%s/" % ("tpfann", REPO))
+    print("publicado: https://%s.github.io/%s/" % (REPO.split("/")[0], REPO.split("/")[1]))
 
 
 if __name__ == "__main__":
