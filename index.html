@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Painel ODS · Paraná</title>
+<link rel="stylesheet" href="prototipo.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="brand-mark"><i></i><i></i><i></i></div>
+    <div>
+      <h1>Painel ODS</h1>
+      <p>Paraná · indicadores municipais</p>
+    </div>
+  </div>
+
+  <nav class="tabs" id="tabs" role="tablist" aria-label="Visões do painel">
+    <button data-view="geral" class="active" role="tab" aria-selected="true">Visão geral</button>
+    <button data-view="explorador" role="tab" aria-selected="false">Explorador</button>
+    <button data-view="comparador" role="tab" aria-selected="false">Comparador</button>
+  </nav>
+
+  <div class="top-actions">
+    <div class="picker">
+      <button class="picker-btn" id="btn-local" aria-haspopup="listbox">Guarapuava</button>
+      <div class="picker-pop" id="pop-local">
+        <input type="search" id="busca-local" placeholder="Buscar município…" autocomplete="off" aria-label="Buscar município">
+        <div class="picker-list" id="lista-local" role="listbox"></div>
+      </div>
+    </div>
+    <select class="select" id="sel-ano" aria-label="Ano de referência"></select>
+    <button class="btn-add" id="btn-imprimir" title="Imprimir ou salvar em PDF">Imprimir</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============================ VISÃO GERAL ============================ -->
+  <section class="view active" id="view-geral">
+    <div class="hero">
+      <div>
+        <p class="eyebrow">Município em foco</p>
+        <h2 id="hero-nome">Guarapuava</h2>
+        <p class="hero-sub" id="hero-sub"></p>
+      </div>
+      <div class="hero-stats" id="hero-stats"></div>
+    </div>
+
+    <div class="ods-grid" id="ods-grid"></div>
+    <div id="nota-sintese"></div>
+    <p class="nota" style="margin:-12px 0 22px">Cada cartão usa o <b>último dado disponível</b> do indicador; o selo âmbar marca dado anterior a 2025. Indicadores de contagem (ex.: esgoto, energia) aparecem em volume absoluto, sem juízo de bom/ruim.</p>
+
+    <div class="duo">
+      <div class="card">
+        <div class="card-head">
+          <h3>Mapa do Paraná</h3>
+          <div class="map-ctrls">
+            <div class="map-ctl">
+              <label for="mapa-ods">ODS</label>
+              <select class="select" id="mapa-ods" aria-label="Filtrar indicadores do mapa por ODS"></select>
+            </div>
+            <div class="map-ctl">
+              <label for="mapa-ind">Indicador</label>
+              <select class="select" id="mapa-ind" aria-label="Indicador exibido no mapa"></select>
+            </div>
+          </div>
+        </div>
+        <div id="mapa"><div class="empty">…</div></div>
+        <div class="legend">
+          <span id="mapa-leg-a">pior</span><span class="ramp"></span><span id="mapa-leg-b">melhor</span>
+          <span class="nd"><i></i>sem dado</span>
+        </div>
+        <p id="mapa-leg-txt" style="font-size:11px;color:var(--muted);margin-top:8px"></p>
+        <p class="nota">Municípios em cinza não têm dado para o indicador no ano exibido — isso é diferente de valor zero.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-head"><h3>Posição relativa</h3>
+          <span style="font-size:11px;color:var(--muted)">percentil entre 399 municípios</span>
+        </div>
+        <div id="destaques"></div>
+        <p class="nota">Usa o <b>último dado disponível</b> de cada indicador. Valor <b>0</b> é dado real; <b>—</b> indica dado inexistente.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ EXPLORADOR ============================ -->
+  <section class="view" id="view-explorador">
+    <div class="explorer">
+      <aside class="sidebar">
+        <input type="search" id="busca-ind" placeholder="Buscar indicador…" autocomplete="off">
+        <div class="ods-filter">
+          <select class="select" id="sel-ods-exp" aria-label="Filtrar indicadores por ODS"></select>
+        </div>
+        <div class="ind-list" id="lista-ind"></div>
+      </aside>
+      <div class="detail" id="detalhe"></div>
+    </div>
+  </section>
+
+  <!-- ============================ COMPARADOR ============================ -->
+  <section class="view" id="view-comparador">
+    <div class="card">
+      <div class="cmp-controls">
+        <select class="select" id="cmp-ods" style="min-width:250px;max-width:320px" aria-label="Filtrar indicadores por ODS"></select>
+        <select class="select" id="cmp-ind" style="min-width:320px;max-width:560px" aria-label="Indicador comparado"></select>
+        <select class="select" id="cmp-ano" style="min-width:92px" aria-label="Ano comparado"></select>
+        <span id="cmp-modo"></span>
+        <div class="cmp-chips" id="cmp-chips"></div>
+      </div>
+      <div id="cmp-resumo" class="kpis" style="margin-bottom:6px"></div>
+      <p class="sub" id="cmp-selo" style="font-size:11.5px;color:var(--muted)"></p>
+    </div>
+
+    <div class="card" style="margin-top:12px">
+      <div class="card-head"><h3>Séries comparadas</h3><div class="legend-inline" id="cmp-lg"></div></div>
+      <div id="cmp-chart"></div>
+    </div>
+
+    <div class="card" style="margin-top:12px;overflow:auto">
+      <div class="card-head"><h3>Últimos 12 anos</h3></div>
+      <div id="cmp-tabela"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="rodape" id="rodape"></footer>
+<div class="print-cabecalho" id="print-cabecalho"></div>
+
+<!-- leitor dos documentos (metodologia, dicionario, fontes, convergencia) -->
+<div class="doc-viewer" id="doc-viewer" hidden>
+  <div class="doc-fundo" data-fechar-doc></div>
+  <section class="doc-painel" role="dialog" aria-modal="true" aria-labelledby="doc-titulo">
+    <header class="doc-topo">
+      <div class="doc-ident">
+        <h2 class="doc-titulo" id="doc-titulo"></h2>
+        <p class="doc-sub" id="doc-sub"></p>
+      </div>
+      <div class="doc-acoes">
+        <a class="doc-baixar" id="doc-baixar" href="#" download>baixar .md</a>
+        <button type="button" class="doc-fechar" id="doc-fechar">Fechar</button>
+      </div>
+    </header>
+    <div class="doc-corpo md" id="doc-corpo" tabindex="-1"></div>
+  </section>
+</div>
+
+<div class="proto-flag">protótipo</div>
+
+<script src="core.js?v=e899e18ea4f9"></script>
+<script src="data/bi/indice.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods1.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods2.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods3.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods4.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods5.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods6.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods7.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods8.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods9.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods13.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods15.js?v=e899e18ea4f9"></script>
+<script src="data/bi/val_ods16.js?v=e899e18ea4f9"></script>
+<script src="data/bi/mapa.js?v=e899e18ea4f9"></script>
+<script src="data/bi/populacao.js?v=e899e18ea4f9"></script>
+<script src="data/bi/fontes_status.js?v=e899e18ea4f9"></script>
+<script src="data/bi/monitoramento.js?v=e899e18ea4f9"></script>
+<script src="data/bi/docs.js?v=e899e18ea4f9"></script>
+<script src="prototipo.js"></script>
+</body>
+</html>
