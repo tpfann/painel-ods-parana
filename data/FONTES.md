@@ -1,6 +1,6 @@
 # Status das fontes oficiais
 
-> Gerado por `scripts/05_fetch_fontes.py` em 2026-10-22 08:35. Não editar à mão: o registro editável é [`data/fontes.csv`](fontes.csv).
+> Gerado por `scripts/05_fetch_fontes.py` em 2026-10-22 09:00. Não editar à mão: o registro editável é [`data/fontes.csv`](fontes.csv).
 
 | Situação | Fontes |
 |---|---:|
