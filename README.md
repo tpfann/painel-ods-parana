@@ -181,7 +181,32 @@ git add -A && git commit -m "base <data> (build <id>)" && git push
 
 ---
 
-## 7. Pendência em aberto de decisão do cliente
+## 7. Distribuir o painel para outras pessoas
+
+Quatro caminhos, do mais simples ao mais controlado:
+
+| Canal | Como | Para quem |
+|---|---|---|
+| **1. Link (GitHub Pages)** | <https://tpfann.github.io/painel-ods-parana/> | o gabinete, qualquer dispositivo, sem instalação |
+| **2. Arquivo offline (ZIP)** | `python scripts/11_publicar_github.py` gera `public/`; comprimir a pasta e enviar | máquinas sem internet (auditório, gabinete com rede restrita) — abre por duplo clique, funciona em `file://` |
+| **3. Servidor interno** | copiar `public/` para o servidor web do gabinete | link interno, sem depender de terceiros |
+| **4. PDF por visualização** | botão **Imprimir** no painel (cabeçalho com município, build e data) | atas de reunião, documento de trabalho |
+
+Em qualquer canal, a **versão publicada não tem a aba Revisão** e ignora revisões
+salvas no navegador: todo mundo vê os mesmos números. O rodapé mostra sempre o
+**build** e a data da base, então dá para saber de qual versão se trata uma
+captura ou um PDF que circule.
+
+Para gerar o pacote offline:
+
+```bash
+python scripts/11_publicar_github.py --so-pasta   # monta public/
+# comprimir: no Windows, compactar a pasta public/ num .zip
+```
+
+---
+
+## 8. Pendência em aberto de decisão do cliente
 
 A **revisão de polaridade dos 194 indicadores** (aba Revisão): marcar um a um
 “menor é melhor / sem juízo / maior é melhor” e exportar o JSON. O arquivo sai
