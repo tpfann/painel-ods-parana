@@ -57,7 +57,25 @@ fontes oficiais — a fonte de verdade é o registro em [`data/fontes.csv`](data
 python scripts/05_fetch_fontes.py            # status de cada fonte + lembrete de edicao nova
 python scripts/05_fetch_fontes.py --estrito  # sai com codigo 1 se algo estiver pendente
 python scripts/06_fetch_sinisa.py --baixar   #SINISA: URL muda todo ano (padrao de descoberta)
+python scripts/09_monitor_fontes.py          # monitoramento continuo das fontes
 ```
+
+**Monitoramento automático:** a tarefa do Windows **"Painel ODS - monitor de
+fontes"** roda `scripts/09_monitor_fontes.py` a cada 6 horas e registra o
+resultado em `data/monitoramento.log` e `data/bi/monitoramento.js` (o painel
+mostra a última verificação no rodapé). Quando o Ministério publica uma nova
+edição do SINISA, o monitor detecta, escreve `data/NOVIDADE.md` e — se o
+arquivo `data/monitoramento_auto.txt` existir — baixa, ingere e regera o payload
+(para automação total, crie esse arquivo; sem ele, apenas avisa).
+
+Para instalar/verificar a tarefa:
+
+```bash
+schtasks /query /tn "Painel ODS - monitor de fontes"
+schtasks /run   /tn "Painel ODS - monitor de fontes"
+```
+
+> A tarefa roda "Interativo apenas": só dispara com o usuário conectado.
 
 Quando a fonte oficial publica uma edicao nova, o script **avisa qual é** (com a
 URL nova proposta) e o registro é atualizado em `data/fontes.csv` — o histórico

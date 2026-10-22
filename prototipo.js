@@ -1329,10 +1329,19 @@
     const b = EN.build || {};
     const pop = POP && POP.info ? POP.info : null;
     const fs = EN.fontes || null;
+    const mon = EN.monitoramento || null;
     const aviso = fs && (fs.pendentes || fs.urls_quebradas)
       ? `<span class="rodape-alerta">⚠ ${fs.pendentes || 0} fonte(s) oficial(is) aguardando nova edição` +
         `${fs.urls_quebradas ? " · " + fs.urls_quebradas + " com URL alterada" : ""} — ver data/FONTES.md</span>`
       : `<span>Fontes oficiais: ${fs ? fs.total : "—"} registradas, todas em dia</span>`;
+    const monTexto = mon
+      ? `<span>Monitoramento verificado em ${esc(mon.verificado_em || "—")}` +
+        (mon.fontes || []).map((f) => ` · ${esc(f.fonte.split(" (")[0])}: ${esc(f.status === "em_dia" || f.status === "ok" ? "em dia" : f.status)}`).join("") +
+        `</span>`
+      : "";
+    const monAviso = mon && (mon.novidades || []).length
+      ? `<span class="rodape-alerta">⚠ novidade detectada nas fontes: ${esc(mon.novidades[0])}</span>`
+      : "";
     rodape.innerHTML =
       `<span>Base gerada em <b>${esc(b.gerado_em || EN.indice.gerado || "—")}</b> · build <code>${esc(b.id || "—")}</code>` +
       `${b.regras ? " · regras " + esc(b.regras) : ""}</span>` +
@@ -1340,6 +1349,8 @@
       (pop && pop.anos_interpolados && pop.anos_interpolados.length
         ? `<span>População interpolada pelo IBGE em ${pop.anos_interpolados.join(", ")}</span>` : "") +
       aviso +
+      monTexto +
+      monAviso +
       `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a> · <a href="data/FONTES.md" target="_blank">Fontes oficiais</a> · <a href="data/CONVERGENCIA.md" target="_blank">Convergência com o IDSC</a></span>`;
   }
 
