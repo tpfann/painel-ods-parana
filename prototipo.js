@@ -1340,7 +1340,7 @@
       (pop && pop.anos_interpolados && pop.anos_interpolados.length
         ? `<span>População interpolada pelo IBGE em ${pop.anos_interpolados.join(", ")}</span>` : "") +
       aviso +
-      `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a> · <a href="data/FONTES.md" target="_blank">Fontes oficiais</a></span>`;
+      `<span><a href="DECISOES.md" target="_blank">Metodologia e decisões</a> · <a href="DATA_SCHEMA.md" target="_blank">Dicionário de dados</a> · <a href="data/FONTES.md" target="_blank">Fontes oficiais</a> · <a href="data/CONVERGENCIA.md" target="_blank">Convergência com o IDSC</a></span>`;
   }
 
   /* ---------------------------------------------------------- init */

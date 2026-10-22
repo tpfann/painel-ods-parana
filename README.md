@@ -77,8 +77,15 @@ Regras do pipeline:
 **Testes:**
 
 ```bash
-node scripts/06_test_core.js    # 54 asserções sobre estatística, chaves e contrato do payload
+node scripts/06_test_core.js            # 55 asserções: estatística, chaves, contrato do payload
+python scripts/08_test_convergencia.py  # compara os nossos valores com os do IDSC-BR
 ```
+
+O teste de convergência ([`data/CONVERGENCIA.md`](data/CONVERGENCIA.md)) é a prova
+independente de que a montagem está correta: ele confronta, município a município e
+no mesmo ano, os 12 indicadores que as duas fontes publicam — mortalidade infantil,
+baixo peso, AIDS, homicídio, tuberculose, pré-natal, neonatal e materna,
+desnutrição, mortes no trânsito e formação docente.
 
 ---
 
