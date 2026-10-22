@@ -5,7 +5,7 @@
 
 | Build | Gerado em | Regras |
 |---|---|---|
-| `e899e18ea4f9` | 2026-10-22 09:18 | 2026-10-21 |
+| `e899e18ea4f9` | 2026-10-22 09:29 | 2026-10-21 |
 
 ## 1. Inventário
 
@@ -13,11 +13,11 @@
 |---|---|
 | Planilhas de dados | **38** `.xlsx` (pasta `Base de Dados/`) |
 | Dicionário | 1 `.xlsx` (pasta `Dicionário/`) — **196** variáveis |
-| Indicadores na base | **196** (dos quais **197** têm dados e entram no BI) |
+| Indicadores na base | **196** (dos quais **198** têm dados e entram no BI) |
 | Observações com valor | **1,283,762** de 1,622,676 células (79.1% de preenchimento) |
 | Localidades | **406** → 399 municípios + `Estado do Paraná` + 6 `RGInt de …` |
 | Período | **1997 – 2025** (varia por indicador) |
-| Indicadores com dado em 2025 | 163 de 197 |
+| Indicadores com dado em 2025 | 164 de 198 |
 | Unidade territorial | Estado do Paraná (foco: **Guarapuava**) |
 
 ## 2. Formato canônico de todas as planilhas
@@ -86,7 +86,7 @@ Distribuição do campo `recorte` nos indicadores do BI:
 
 | Recorte | Qtd |
 |---|---:|
-| `sem recorte` | 69 |
+| `sem recorte` | 70 |
 | `Total` | 28 |
 | `Cor/Raça Amarela` | 16 |
 | `Cor/Raça Branca` | 16 |
@@ -106,7 +106,7 @@ Distribuição do campo `recorte` nos indicadores do BI:
 | `óbitos` | 36 |
 | `mil nascidos vivos` | 30 |
 | `R$ 1,00` | 14 |
-| `100 mil habitantes` | 10 |
+| `100 mil habitantes` | 11 |
 | `100 mil nascidos vivos` | 6 |
 | `mil habitantes` | 6 |
 | `100 mil adultos` | 2 |
@@ -372,6 +372,7 @@ A revisão de polaridade é exportada **por `chave`**, nunca por `id` posicional
 | 195 | `sinisa_iag0001` | 6 | Abastecimento de água (SINISA) | Atendimento da população total com rede de abastecimento de água | `IAG0001` | 2023–2023 | 2023-12-31 |
 | 196 | `sinisa_iag0002` | 6 | Abastecimento de água (SINISA) | Atendimento da população urbana com rede de abastecimento de água | `IAG0002` | 2023–2023 | 2023-12-31 |
 | 197 | `sinisa_iag0003` | 6 | Abastecimento de água (SINISA) | Atendimento da população rural com rede de abastecimento de água | `IAG0003` | 2023–2023 | 2023-12-31 |
+| 198 | `65b78ec7` | 11 | Cidades Sustentáveis | Mortes no trânsito (100 mil habitantes) | `3.6.1` | 1997–2025 | 2026-08-24 |
 
 ## 8. Armadilhas e qualidade dos dados
 

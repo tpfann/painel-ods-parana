@@ -57,7 +57,8 @@ NOME_ODS = {
     3: "Saúde e Bem-Estar", 4: "Educação de Qualidade", 5: "Igualdade de Gênero",
     6: "Água Potável e Saneamento", 7: "Energia Limpa e Acessível",
     8: "Trabalho Decente e Crescimento Econômico",
-    9: "Indústria, Inovação e Infraestrutura", 13: "Ação Contra a Mudança Global do Clima",
+    9: "Indústria, Inovação e Infraestrutura", 11: "Cidades Sustentáveis",
+    13: "Ação Contra a Mudança Global do Clima",
     15: "Vida Terrestre", 16: "Paz, Justiça e Instituições Eficazes",
 }
 
@@ -69,6 +70,8 @@ RECORTES = {
 
 # Indicador principal de cada ODS — nome EXATO da coluna de origem (chave de negócio).
 # Substitui a busca por substring que vivia no JavaScript (fragil e duplicada).
+# 13: "Mortes no trânsito" -> 11.2
+# 16: "Proporção de Nascidos Vivos Registrados por Autoridade Civil" -> 16.10
 PRINCIPAL_POR_ODS = {
     1: "Proporção do Total das Despesas Públicas Municipais com Educação e Seguridade Social (%)",
     2: "Proporção de Nascidos Vivos com Baixo Peso ao Nascer - Total (%)",
@@ -82,6 +85,21 @@ PRINCIPAL_POR_ODS = {
     13: "Número de Mortes, Pessoas Desaparecidas e Pessoas Diretamente Afetadas Atribuído a Desastres (100 mil habitantes)",
     15: "Área de Remanescente Florestal como Proporção da Área Territorial (%)",
     16: "Taxa de Mortalidade por Homicídios (100 mil habitantes)",
+    11: "Mortes no trânsito (100 mil habitantes)",
+}
+
+# Indicadores que aparecem em um segundo ODS sem duplicar a serie.
+# A mesma serie oficial e espelhada (mesmos valores, ids diferentes) e a sintese
+# conta cada serie underlying uma vez só.
+ESPELHOS = {
+    11: [dict(
+        origem="Taxa de Mortalidade Causas Externas - Acidentes de Trânsito (Transporte)",
+        grupo="Cidades Sustentáveis",
+        medida="Mortes no trânsito",
+        gcurto="Mortes no trânsito",
+        justificativa="Mesma serie oficial do Ministerio da Saude (CID10 V01-V99), "
+                      "classificada tambem no ODS 11 (cidades sustentaveis), como faz o IDSC.",
+    )],
 }
 
 # Contagens que podem ser vistas como taxa por 100 mil habitantes: o numerador tem de
@@ -328,14 +346,7 @@ for c in catalogo:
     indicadores.append(meta)
     por_ods.setdefault(c["ods"], []).append((meta, anos, c["indicador"]))
 
-# marca o indicador principal de cada ODS (chave de negocio explicita)
-for ods, nome in PRINCIPAL_POR_ODS.items():
-    achou = [m for m, _, _ in por_ods.get(ods, []) if m["nome"] == nome]
-    if not achou:
-        raise ValueError("indicador principal do ODS %d nao encontrado: %r" % (ods, nome))
-    achou[0]["principal"] = True
-for m in indicadores:
-    m.setdefault("principal", False)
+# (o indicador principal de cada ODS e marcado depois dos espelhos)
 
 # indicadores de fontes externas (SINISA): entram como indicadores proprios,
 # nunca substituem um indicador existente (cada um com a sua fonte declarada)
@@ -345,6 +356,39 @@ if SINISA:
         indicadores.append(meta)
         por_ods.setdefault(meta["ods"], []).append((meta, meta["anos"], None))
         valores_externos[meta["id"]] = SINISA["valores"][meta["id"]]
+
+# espelhos: a mesma serie oficial classificada em um segundo ODS
+espelhos = {}
+for ods, itens in ESPELHOS.items():
+    for item in itens:
+        orig = next((m for m in indicadores if norm(m["medida"]) == norm(item["origem"])), None)
+        if orig is None:
+            raise ValueError("indicador de origem do espelho nao encontrado: %r" % item["origem"])
+        chave = "ESPELHO %s | %s" % (ods, item["medida"])
+        clone = dict(orig)
+        clone["id"] = id_curto(chave)
+        clone["chave"] = chave
+        clone["ods"] = ods
+        clone["grupo"] = item["grupo"]
+        clone["gcurto"] = item["gcurto"]
+        clone["medida"] = item["medida"]
+        clone["espelho_de"] = orig["id"]
+        clone["espelho_motivo"] = item["justificativa"]
+        clone["nome"] = "%s (%s)" % (item["medida"], orig["unidade"])
+        clone["principal"] = False
+        indicadores.append(clone)
+        espelhos[clone["id"]] = orig["id"]
+        por_ods.setdefault(ods, []).append((clone, clone["anos"], None))
+        print("  espelho: ODS %d <- %s (%s)" % (ods, orig["gcurto"], orig["id"]))
+
+# marca o indicador principal de cada ODS (chave de negocio explicita)
+for ods, nome in PRINCIPAL_POR_ODS.items():
+    achou = [m for m, _, _ in por_ods.get(ods, []) if m["nome"] == nome]
+    if not achou:
+        raise ValueError("indicador principal do ODS %d nao encontrado: %r" % (ods, nome))
+    achou[0]["principal"] = True
+for m in indicadores:
+    m.setdefault("principal", False)
 
 # ---------------------------------------------------------------- valores
 total_bytes = 0
@@ -356,6 +400,9 @@ for ods, itens in por_ods.items():
               "window.BI.valores=window.BI.valores||{};"]
     for meta, anos, nome_original in itens:
         n_a = len(anos)
+        if meta["id"] in espelhos:
+            # o espelho e escrito junto com a serie de origem (alias em JS)
+            continue
         if nome_original is None:
             # valor de fonte externa (ja no layout do payload)
             linhas.append('BI.valores["%s"]=%s;' % (meta["id"], js(valores_externos[meta["id"]])))
@@ -371,6 +418,10 @@ for ods, itens in por_ods.items():
                 if v is not None and v == v:
                     arr[base + j] = round(float(v), 3)
         linhas.append(f'BI.valores["{meta["id"]}"]={js(arr)};')
+        # espelhos desta serie: alias em JS (mesmos dados, sem duplicar)
+        for esp_id, orig_id in espelhos.items():
+            if orig_id == meta["id"]:
+                linhas.append('BI.valores["%s"]=BI.valores["%s"];' % (esp_id, orig_id))
     conteudo = "\n".join(linhas)
     caminho = os.path.join(OUT, nome_arquivo)
     with open(caminho, "w", encoding="utf-8") as fh:
@@ -487,7 +538,8 @@ print("proporcionais (contagens -> por 100 mil hab.):",
 print("sem recorte:", sum(1 for i in indicadores if not i["recorte"]))
 
 # checagens de contrato (falham alto, nao apenas avisam)
-n_esperados = len(catalogo) - 2 + (len(SINISA["ind"]) if SINISA else 0)
+n_esperados = (len(catalogo) - 2 + (len(SINISA["ind"]) if SINISA else 0)
+                + sum(len(v) for v in ESPELHOS.values()))
 assert len(indicadores) == n_esperados, (
     "esperados %d indicadores (2 sem dados no catalogo), vieram %d" % (n_esperados, len(indicadores)))
 assert len({i["id"] for i in indicadores}) == len(indicadores), "id de indicador duplicado"

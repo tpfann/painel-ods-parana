@@ -52,11 +52,14 @@ function near(nome, a, b, tol) { ok(nome, Math.abs(a - b) <= (tol || 0.51), "obt
 ok("manifesto do payload presente", !!(BI.build && BI.build.id));
 ok("todos os arquivos do mesmo build",
   new Set(Object.values(BI.builds).map((b) => b.id)).size === 1);
-ok("194 indicadores do catalogo + externos", INDS.length === 194 + (BI.sinisa ? BI.sinisa.ind.length : 0), String(INDS.length));
+const n_espelhos = INDS.filter((i) => i.espelho_de).length;
+ok("194 indicadores do catalogo + externos + espelhos",
+  INDS.length === 194 + (BI.sinisa ? BI.sinisa.ind.length : 0) + n_espelhos, String(INDS.length));
+ok("espelhos apontam para indicador existente",
+  INDS.filter((i) => i.espelho_de).every((i) => INDS.some((x) => x.id === i.espelho_de)));
 ok("406 localidades", LOC.length === 406, String(LOC.length));
 ok("399 municipios", MUN.length === 399, String(MUN.length));
-ok("12 ODS", ODS.length === 12, String(ODS.length));
-ok("chaves de negocio unicas", new Set(INDS.map((i) => i.chave)).size === INDS.length);
+ok("13 ODS (12 do painel + ODS 11)", ODS.length === 13, String(ODS.length));ok("chaves de negocio unicas", new Set(INDS.map((i) => i.chave)).size === INDS.length);
 ok("ids curtos unicos", new Set(INDS.map((i) => i.id)).size === INDS.length);
 ok("cada indicador tem 399 municipios na origem", INDS.every((i) => i.n_municipios === 399));
 ok("principais definidos para os 12 ODS", ODS.every((o) => !!o.principal));

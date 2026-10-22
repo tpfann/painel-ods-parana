@@ -473,7 +473,8 @@
 
   /* ---------------------------------------------------------- mapa (2 filtros) */
   // mapa: medidas comparáveis (percentual/taxa), com ou sem juízo de valor
-  const elegMapa = () => INDS.filter(elegivelMapa);
+  // (series espelhadas nao entram: a original ja esta no mapa)
+  const elegMapa = () => INDS.filter((i) => elegivelMapa(i) && !i.espelho_de);
 
   const rotuloBase = (i) => i.gcurto + (i.recorte && i.recorte !== "Total" ? " · " + i.recorte : "");
 
@@ -589,10 +590,12 @@
 
     $("#hero-nome").textContent = loc.n;
     const eleg = INDS.filter(elegivelRanking);
+    // serie espelhada em outro ODS: conta uma vez so (a original)
+    const elegUnicas = eleg.filter((i) => !i.espelho_de);
     const porOds = new Map();
     let acima = 0, total = 0;
     const foraDaSintese = [];
-    eleg.forEach((ind) => {
+    elegUnicas.forEach((ind) => {
       const a = ultimoAnoDado(ind);
       const st = stats(ind, a);
       // regra de qualidade (DECISOES.md §2.3): só entra em síntese o que discrimina
@@ -663,7 +666,12 @@
           <span class="ods-num">${o.n}</span>
           <span class="ods-name">${esc(o.nome)}</span>
         </div>
-        <div class="ods-ind" title="${esc(ind.grupo)} · ${esc(ind.medida)}">${esc(subInd)}</div>
+        <div class="ods-ind" title="${esc(ind.grupo)} · ${esc(ind.medida)}">${esc(subInd)}${
+          ind.espelho_de ? (() => {
+            const o = INDS.find((x) => x.id === ind.espelho_de);
+            return o ? `<br><small class="rec">mesma série oficial classificada também no ODS ${o.ods}</small>` : "";
+          })() : ""
+        }</div>
         <div class="ods-val">
           <div><b>${f.t}</b><small>${f.u || unitShort(ind)}</small></div>
           ${sparkline(serie, o.cor, 84, 26, ind.anos.slice(-10))}
@@ -697,7 +705,7 @@
 
     // destaques
     const notas = [];
-    eleg.forEach((ind) => {
+    elegUnicas.forEach((ind) => {
       const a = ultimoAnoDado(ind);
       const st = stats(ind, a);
       // mesma regra das sínteses: só o que discrimina entra nos destaques
