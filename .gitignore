@@ -10,6 +10,9 @@ _tmp_*.py
 scratch/
 *.tmp
 *.log
+data/cache/
+data/monitoramento_auto.txt
+data/NOVIDADE.md
 
 # ---- python ----
 __pycache__/
