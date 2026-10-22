@@ -91,6 +91,7 @@ def ler_componentes(z: zipfile.ZipFile, sufixo: str, aba: int = 0):
         fh.write(z.read(nome))
     xl = pd.ExcelFile(tmp)
     df = pd.read_excel(tmp, sheet_name=xl.sheet_names[aba], header=None)
+    xl.close()
     linha_cod = None
     for k in range(6, 13):
         vals = df.iloc[k].tolist()
@@ -264,6 +265,7 @@ def main() -> None:
             fh.write(z.read(nome_ind))
         xl2 = pd.ExcelFile(tmp2)
         df2 = pd.read_excel(tmp2, sheet_name=0, header=None, nrows=13)
+        xl2.close()
         lc = None
         for k in range(6, 13):
             vals = df2.iloc[k].tolist()
