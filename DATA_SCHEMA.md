@@ -5,7 +5,7 @@
 
 | Build | Gerado em | Regras |
 |---|---|---|
-| `8f4aec016b1a` | 2026-10-22 08:35 | 2026-10-21 |
+| `e899e18ea4f9` | 2026-10-22 09:18 | 2026-10-21 |
 
 ## 1. Inventário
 
@@ -13,11 +13,11 @@
 |---|---|
 | Planilhas de dados | **38** `.xlsx` (pasta `Base de Dados/`) |
 | Dicionário | 1 `.xlsx` (pasta `Dicionário/`) — **196** variáveis |
-| Indicadores na base | **196** (dos quais **194** têm dados e entram no BI) |
+| Indicadores na base | **196** (dos quais **197** têm dados e entram no BI) |
 | Observações com valor | **1,283,762** de 1,622,676 células (79.1% de preenchimento) |
 | Localidades | **406** → 399 municípios + `Estado do Paraná` + 6 `RGInt de …` |
 | Período | **1997 – 2025** (varia por indicador) |
-| Indicadores com dado em 2025 | 163 de 194 |
+| Indicadores com dado em 2025 | 163 de 197 |
 | Unidade territorial | Estado do Paraná (foco: **Guarapuava**) |
 
 ## 2. Formato canônico de todas as planilhas
@@ -87,7 +87,7 @@ Distribuição do campo `recorte` nos indicadores do BI:
 | Recorte | Qtd |
 |---|---:|
 | `sem recorte` | 69 |
-| `Total` | 25 |
+| `Total` | 28 |
 | `Cor/Raça Amarela` | 16 |
 | `Cor/Raça Branca` | 16 |
 | `Cor/Raça Indígena` | 16 |
@@ -102,7 +102,7 @@ Distribuição do campo `recorte` nos indicadores do BI:
 
 | Unidade | Qtd |
 |---|---:|
-| `%` | 83 |
+| `%` | 86 |
 | `óbitos` | 36 |
 | `mil nascidos vivos` | 30 |
 | `R$ 1,00` | 14 |
@@ -369,6 +369,9 @@ A revisão de polaridade é exportada **por `chave`**, nunca por `id` posicional
 | 192 | `5ba84b67` | 15 | Área de Remanescente Florestal como Proporção da Área Territorial | Área de Remanescente Florestal como Proporção da Área Territorial (%) | `15.1.1A` | 2012–2025 | 2026-09-04 |
 | 193 | `8ec34e57` | 16 | Proporção de Nascidos Vivos que Tiveram seus Nascimentos Registrados por uma Autoridade Civil | Proporção de Nascidos Vivos que Tiveram seus Nascimentos Registrados por uma Autoridade Civil (%) | `16.9.1.A` | 2015–2024 | 2026-08-24 |
 | 194 | `9f473c78` | 16 | Taxa de Mortalidade por Homicídios | Taxa de Mortalidade por Homicídios (100 mil habitantes) | `16.1.1` | 1997–2025 | 2026-08-24 |
+| 195 | `sinisa_iag0001` | 6 | Abastecimento de água (SINISA) | Atendimento da população total com rede de abastecimento de água | `IAG0001` | 2023–2023 | 2023-12-31 |
+| 196 | `sinisa_iag0002` | 6 | Abastecimento de água (SINISA) | Atendimento da população urbana com rede de abastecimento de água | `IAG0002` | 2023–2023 | 2023-12-31 |
+| 197 | `sinisa_iag0003` | 6 | Abastecimento de água (SINISA) | Atendimento da população rural com rede de abastecimento de água | `IAG0003` | 2023–2023 | 2023-12-31 |
 
 ## 8. Armadilhas e qualidade dos dados
 

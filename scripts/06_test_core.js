@@ -20,7 +20,7 @@ sandbox.window = sandbox;   // no navegador, window é o próprio global
 sandbox.self = sandbox;
 vm.createContext(sandbox);
 
-const arquivos = ["indice.js", "mapa.js", "populacao.js"].concat(
+const arquivos = ["indice.js", "mapa.js", "populacao.js", "sinisa.js"].concat(
   fs.readdirSync(BI_DIR).filter((f) => /^val_ods\d+\.js$/.test(f)).sort()
 );
 arquivos.forEach((f) => {
@@ -52,7 +52,7 @@ function near(nome, a, b, tol) { ok(nome, Math.abs(a - b) <= (tol || 0.51), "obt
 ok("manifesto do payload presente", !!(BI.build && BI.build.id));
 ok("todos os arquivos do mesmo build",
   new Set(Object.values(BI.builds).map((b) => b.id)).size === 1);
-ok("194 indicadores", INDS.length === 194, String(INDS.length));
+ok("194 indicadores do catalogo + externos", INDS.length === 194 + (BI.sinisa ? BI.sinisa.ind.length : 0), String(INDS.length));
 ok("406 localidades", LOC.length === 406, String(LOC.length));
 ok("399 municipios", MUN.length === 399, String(MUN.length));
 ok("12 ODS", ODS.length === 12, String(ODS.length));

@@ -44,6 +44,8 @@ Os dados de origem ficam em `Base de Dados/` (38 planilhas) e `Dicionário/`
 python scripts/00_build_geo.py       # de-para município -> IBGE (código + RGInt)
 python scripts/01_build_catalog.py   # lê as 38 planilhas -> catalog.json + long.csv.gz
 python scripts/04_build_populacao.py # população do IBGE (estimativas + censos)
+python scripts/06_fetch_sinisa.py --baixar  # SINISA (URL muda todo ano) -> data/cache
+python scripts/07_build_sinisa.py    # indicadores SINISA recalculados no município
 python scripts/03_build_bi.py        # monta o payload do navegador (data/bi/)
 python scripts/02_gen_schema.py      # gera DATA_SCHEMA.md (numeros calculados)
 ```

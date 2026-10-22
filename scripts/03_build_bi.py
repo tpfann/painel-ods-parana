@@ -239,6 +239,15 @@ if os.path.exists(caminho_pop):
 # registro de fontes oficiais (proveniencia de cada espelho local)
 FONTES = ler_fontes()
 
+# indicadores de fontes externas ja processadas (ex.: SINISA)
+caminho_sinisa = os.path.join(OUT, "sinisa.js")
+sinisa_bytes = b""
+SINISA = None
+if os.path.exists(caminho_sinisa):
+    with open(caminho_sinisa, "rb") as fh:
+        sinisa_bytes = fh.read()
+    SINISA = json.loads(sinisa_bytes.decode("utf-8").split("BI.sinisa=", 1)[1].rstrip().rstrip(";"))
+
 # manifest: identidade do payload ( impede misturar geracoes diferentes )
 # REGRAS_VERSION entra no hash: se as regras de derivacao mudarem (polaridade,
 # proporcionalidade, rotulos), o build muda e o app recusa payload antigo.
@@ -248,6 +257,7 @@ BUILD_ID = sha(
     json.dumps(catalogo, ensure_ascii=False, sort_keys=True).encode("utf-8"),
     json.dumps(ibge, ensure_ascii=False, sort_keys=True).encode("utf-8"),
     pop_bytes,
+    sinisa_bytes,
 )
 BUILD = {
     "id": BUILD_ID,
@@ -327,6 +337,15 @@ for ods, nome in PRINCIPAL_POR_ODS.items():
 for m in indicadores:
     m.setdefault("principal", False)
 
+# indicadores de fontes externas (SINISA): entram como indicadores proprios,
+# nunca substituem um indicador existente (cada um com a sua fonte declarada)
+valores_externos = {}
+if SINISA:
+    for meta in SINISA["ind"]:
+        indicadores.append(meta)
+        por_ods.setdefault(meta["ods"], []).append((meta, meta["anos"], None))
+        valores_externos[meta["id"]] = SINISA["valores"][meta["id"]]
+
 # ---------------------------------------------------------------- valores
 total_bytes = 0
 for ods, itens in por_ods.items():
@@ -337,6 +356,10 @@ for ods, itens in por_ods.items():
               "window.BI.valores=window.BI.valores||{};"]
     for meta, anos, nome_original in itens:
         n_a = len(anos)
+        if nome_original is None:
+            # valor de fonte externa (ja no layout do payload)
+            linhas.append('BI.valores["%s"]=%s;' % (meta["id"], js(valores_externos[meta["id"]])))
+            continue
         arr = [None] * (N * n_a)
         for loc, i in idx_loc.items():
             serie = pilhas[loc].get(nome_original)
@@ -464,8 +487,9 @@ print("proporcionais (contagens -> por 100 mil hab.):",
 print("sem recorte:", sum(1 for i in indicadores if not i["recorte"]))
 
 # checagens de contrato (falham alto, nao apenas avisam)
-assert len(indicadores) == len(catalogo) - 2, (
-    "esperados 194 indicadores (2 sem dados no catalogo), vieram %d" % len(indicadores))
+n_esperados = len(catalogo) - 2 + (len(SINISA["ind"]) if SINISA else 0)
+assert len(indicadores) == n_esperados, (
+    "esperados %d indicadores (2 sem dados no catalogo), vieram %d" % (n_esperados, len(indicadores)))
 assert len({i["id"] for i in indicadores}) == len(indicadores), "id de indicador duplicado"
 assert all(i["anos"] == sorted(i["anos"]) for i in indicadores), "anos fora de ordem"
 assert all(i["n_municipios"] == 399 for i in indicadores), "indicador sem os 399 municipios"
