@@ -245,14 +245,6 @@ def main() -> None:
         valores[ident] = arr
 
     os.makedirs(os.path.dirname(SAIDA), exist_ok=True)
-    # limpa os extratos temporarios das planilhas lidas
-    for tmp in ("_sinisa_tmp.xlsx", "_sinisa_ind.xlsx", "_sinisa_uf.xlsx"):
-        p = os.path.join(CACHE, tmp)
-        if os.path.exists(p):
-            try:
-                os.remove(p)
-            except OSError:
-                pass
     with io.open(SAIDA, "w", encoding="utf-8", newline="\n") as fh:
         fh.write("/* SINISA (Ministerio das Cidades) — indicadores do modulo de agua, ")
         fh.write("recalculados no municipio a partir dos componentes dos prestadores.\n")
@@ -314,6 +306,15 @@ def main() -> None:
             print("     divergencia %.3f | %s %s | nosso=%s publicado=%s" % m)
     except Exception as e:
         print("  (conferencia indisponivel: %s: %s)" % (type(e).__name__, e))
+    finally:
+        # limpa os extratos temporarios das planilhas lidas
+        for tmp in ("_sinisa_tmp.xlsx", "_sinisa_ind.xlsx", "_sinisa_uf.xlsx"):
+            p = os.path.join(CACHE, tmp)
+            if os.path.exists(p):
+                try:
+                    os.remove(p)
+                except OSError:
+                    pass
 
 
 if __name__ == "__main__":
